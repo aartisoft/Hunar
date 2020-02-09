@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    >
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:theme="@style/AppTheme.AppBarOverlay">
+
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/toolbar1"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                app:titleTextColor="@color/grey"
+                app:popupTheme="@style/AppTheme.PopupOverlay"
+                >
+                <androidx.cardview.widget.CardView
+                    android:visibility="gone"
+                    android:id="@+id/card_search"
+                    android:layout_margin="5dp"
+                    android:layout_width="300dp"
+                    android:layout_height="wrap_content"
+                    app:cardElevation="10dp"
+                    app:cardCornerRadius="4dp"
+                    >
+
+                    <EditText
+                        android:padding="5dp"
+                        android:drawablePadding="5dp"
+                        android:background="@null"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:hint="Seach all course"
+                        android:textColor="@color/black"
+                        android:textColorHint="@color/grey"
+                        android:drawableLeft="@drawable/ic_search_black_24dp"
+                        >
+
+                    </EditText>
+                </androidx.cardview.widget.CardView>
+
+            </androidx.appcompat.widget.Toolbar>
+
+            <!--  <ImageView
+                  android:layout_width="match_parent"
+                  android:layout_height="30dp"
+                  android:src="@drawable/search_icon"
+                  android:background="@color/colorNavHedder"
+                  android:layout_gravity="center"
+                  android:layout_weight="0.8" />-->
+
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <FrameLayout
+        android:layout_marginBottom="50dp"
+        android:id="@+id/frame"
+        android:layout_below="@id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    </FrameLayout>
+
+
+    <com.eightbitlab.bottomnavigationbar.BottomNavigationBar
+        android:id="@+id/bottom_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="@color/black"
+        app:activeTabColor="@android:color/white"
+        app:inactiveTabColor="@color/grey"
+
+        />
+
+</RelativeLayout>

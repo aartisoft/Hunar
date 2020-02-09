@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:cardCornerRadius="20dp"
+    android:layout_margin="10dp"
+    app:cardBackgroundColor="@color/light_grey"
+    >
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="centerCrop"
+        />
+
+    <LinearLayout
+        android:weightSum="1"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
+
+
+        <ImageView
+            android:layout_weight="0.3"
+            android:id="@+id/iv_icon"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="5pt"
+            android:scaleType="fitXY"
+            android:src="@drawable/logo"
+            android:layout_centerHorizontal="true"
+            />
+
+
+        <LinearLayout
+            android:layout_weight="0.7"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            >
+
+        <TextView
+            android:id="@+id/ctvText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginLeft="25dp"
+            android:layout_marginRight="20dp"
+            android:gravity="center"
+            android:text="Hunar APP VIDEOs"
+            android:textAlignment="center"
+            android:textColor="@color/colorPrimary"
+            android:textSize="22sp"
+            android:layout_below="@+id/iv_icon"
+            android:layout_centerHorizontal="true"
+            />
+
+        <TextView
+            android:id="@+id/ctvText1"
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginLeft="25dp"
+            android:layout_marginRight="25dp"
+            android:layout_marginTop="5dp"
+            android:gravity="center"
+            android:text="Study at HUNAR"
+            android:textAlignment="center"
+            android:textColor="@color/grey"
+            android:textSize="18sp"
+            android:layout_below="@+id/ctvText"
+            android:layout_centerHorizontal="true"
+            android:singleLine="false"
+            android:minLines="2"
+            android:lines="2"
+            />
+
+    </LinearLayout>
+    </LinearLayout>
+
+    </RelativeLayout>
+
+</androidx.cardview.widget.CardView>

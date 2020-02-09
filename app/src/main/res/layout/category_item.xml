@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <import type="android.view.View"/>
+        <variable
+            name="model"
+            type="com.info.hunar.model_pojo.category_model.CategoryModelData" />
+
+        <variable
+            name="itemClickListener"
+            type="com.info.hunar.binding_interface.HomeCategoryClickListener" />
+    </data>
+
+<LinearLayout
+    android:layout_margin="5dp"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:weightSum="1"
+        android:orientation="horizontal"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+
+        <androidx.cardview.widget.CardView
+            android:onClick="@{() -> itemClickListener.cardClicked(model)}"
+            android:id="@+id/card_painter"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:elevation="10dp"
+            app:cardBackgroundColor="@color/white"
+            >
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="0dp"
+                >
+
+                <ImageView
+                    app:postImage="@{model.postUrl}"
+                    android:scaleType="fitXY"
+                    android:layout_gravity="center"
+                    android:layout_width="match_parent"
+                    android:layout_height="120dp"
+                    android:layout_margin="0dp"
+                    android:src="@drawable/painter"
+                    />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:singleLine="false"
+                    android:text="@{model.catName}"
+                    android:textSize="13dp"
+                    android:textAllCaps="true"
+                    android:textStyle="bold"
+                    style="@style/boldtx"
+                    android:textColor="@color/colorPrimary"
+                    android:textAlignment="center"
+                    android:padding="5dp"
+                    />
+
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+
+
+    </LinearLayout>
+
+</LinearLayout>
+
+</layout>

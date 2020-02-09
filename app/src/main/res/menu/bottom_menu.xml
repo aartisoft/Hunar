@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/b_home"
+        android:icon="@drawable/ic_home_black_24dp"
+        android:title="Featured"/>
+
+    <item
+        android:id="@+id/b_app"
+        android:icon="@drawable/book_app"
+        android:title="Search"/>
+
+    <item
+        android:id="@+id/b_cusapp"
+        android:icon="@drawable/facebook"
+        android:title="My Courses"/>
+
+    <item
+        android:id="@+id/b_performance"
+        android:icon="@drawable/google"
+        android:title="Wishlist"/>
+
+    <item
+        android:id="@+id/b_comm"
+        android:icon="@drawable/email_color"
+        android:title="Account"/>
+
+</menu>

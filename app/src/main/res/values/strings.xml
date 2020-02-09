@@ -1,0 +1,45 @@
+<resources>
+    <string name="app_name">Hunar</string>
+
+    <string name="agree">By Sign in you are agreed to our </string>
+    <string name="terms">Terms and Conditions.</string>
+    <string name="lgin_gmail">Sign in with email</string>
+    <string name="lgin_gogle">Sign in with Google</string>
+    <string name="signup_email">Sign up with email</string>
+    <string name="signup_gogle">Sign up with Google</string>
+    <string name="signup_fb">Sign up with Facebook</string>
+
+    <string name="make_acc">Don\'t  have  an  account. Create  now</string>
+    <string name="select_profile">Select either you are a</string>
+    <string name="forgot_pass">Forgot Password?</string>
+    <string name="reset_pass">Reset Password</string>
+    <string name="Verification_Code">Enter Verification Code</string>
+    <string name="create_acc">Create Account</string>
+
+    <string name="item1">Home</string>
+    <string name="item2">Downloads</string>
+    <string name="item3">My Course</string>
+    <string name="item4">Wishlist</string>
+    <string name="item5">Profile</string>
+
+    <string name="first_intro">  Take video courses </string>
+    <string name="first_intro_msg"> From cooking to coding and everything in between</string>
+
+    <string name="second_intro">  Learn from experts </string>
+    <string name="second_intro_msg"> Approachable expert instructors, vetted by 12 million students </string>
+
+    <string name="third_intro">  Go at your own pace </string>
+    <string name="third_intro_msg"> Lifetime access to courses, watch them anytime, anywhere </string>
+
+    <string name="c1"> <strike> ₹12,500 </strike></string>
+    <string name="c2"> <strike> ₹10,500 </strike></string>
+    <string name="c3"> <strike> ₹15,500 </strike></string>
+    <string name="c4"> <strike> ₹10,100 </strike></string>
+    <string name="c5"> <strike> ₹20,100 </strike></string>
+    <string name="c6"> <strike> ₹12,100 </strike></string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="expand">Expand</string>
+
+</resources>
