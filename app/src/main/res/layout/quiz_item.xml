@@ -10,9 +10,9 @@
             name="model"
             type="com.info.hunar.model_pojo.quiz_test_model.QuizTestModelDataQuiz" />
 
-<!--        <variable-->
-<!--            name="itemClickListener"-->
-<!--            type="com.info.hunar.binding_interface.HomeCategoryClickListener" />-->
+        <variable
+            name="itemClickListener"
+            type="com.info.hunar.binding_interface.TestQuizClickListener" />
     </data>
 
 
@@ -34,12 +34,12 @@
                 android:orientation="vertical">
 
 
-<!--                android:text="Q1. Laser distance meter Lite provides"-->
+                <!--                android:text="Q1. Laser distance meter Lite provides"-->
                 <TextView
-                    android:text="@{model.getQuestion()}"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:padding="5dp"
+                    android:text="@{model.getQuestion()}"
                     android:textAlignment="textStart"
                     android:textColor="#062944"
                     android:textSize="18dp"
@@ -51,64 +51,70 @@
                     android:orientation="vertical"
                     android:weightSum="1">
 
-                    <RadioButton
+                    <RadioGroup
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="@{model.getOptionOne()}"
-                        >
+                        android:layout_marginBottom="20dp"
+                        android:checkedButton="@={model.selectedId}">
 
-                    </RadioButton>
+                        <RadioButton
+                            android:id="@+id/radio_one"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@{model.getOptionOne()}">
 
-                    <RadioButton
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="@{model.getOptionTwo()}"
-                        >
+                        </RadioButton>
 
-                    </RadioButton>
+                        <RadioButton
+                            android:id="@+id/radio_two"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@{model.getOptionTwo()}">
 
-                    <RadioButton
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="@{model.getOptionThree()}"
-                        >
+                        </RadioButton>
 
-                    </RadioButton>
+                        <RadioButton
+                            android:id="@+id/radio_three"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@{model.getOptionThree()}">
 
-                    <RadioButton
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="@{model.getOptionFour()}"
-                        >
+                        </RadioButton>
 
-                    </RadioButton>
+                        <RadioButton
+                            android:id="@+id/radio_four"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@{model.getOptionFour()}">
 
+                        </RadioButton>
+                    </RadioGroup>
                 </LinearLayout>
 
-<!--                <LinearLayout-->
-<!--                    android:layout_width="match_parent"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:orientation="horizontal"-->
-<!--                    android:weightSum="1">-->
+                <!--                <LinearLayout-->
+                <!--                    android:layout_width="match_parent"-->
+                <!--                    android:layout_height="wrap_content"-->
+                <!--                    android:orientation="horizontal"-->
+                <!--                    android:weightSum="1">-->
 
-<!--                    <RadioButton-->
-<!--                        android:layout_width="match_parent"-->
-<!--                        android:layout_height="wrap_content"-->
-<!--                        android:layout_weight="0.5"-->
-<!--                        android:text="40 meters range">-->
+                <!--                    <RadioButton-->
+                <!--                        android:layout_width="match_parent"-->
+                <!--                        android:layout_height="wrap_content"-->
+                <!--                        android:layout_weight="0.5"-->
+                <!--                        android:text="40 meters range">-->
 
-<!--                    </RadioButton>-->
+                <!--                    </RadioButton>-->
 
-<!--                    <RadioButton-->
-<!--                        android:layout_width="match_parent"-->
-<!--                        android:layout_height="wrap_content"-->
-<!--                        android:layout_weight="0.5"-->
-<!--                        android:text="50 meters range">-->
+                <!--                    <RadioButton-->
+                <!--                        android:layout_width="match_parent"-->
+                <!--                        android:layout_height="wrap_content"-->
+                <!--                        android:layout_weight="0.5"-->
+                <!--                        android:text="50 meters range">-->
 
-<!--                    </RadioButton>-->
+                <!--                    </RadioButton>-->
 
 
-<!--                </LinearLayout>-->
+                <!--                </LinearLayout>-->
 
 
             </LinearLayout>

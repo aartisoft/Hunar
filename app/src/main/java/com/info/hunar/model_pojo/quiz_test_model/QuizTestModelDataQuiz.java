@@ -1,12 +1,16 @@
 package com.info.hunar.model_pojo.quiz_test_model;
 
+import androidx.databinding.BaseObservable;
+
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 /**
  * Created by Raghvendra Sahu on 09-Feb-20.
  */
-public class QuizTestModelDataQuiz {
+public class QuizTestModelDataQuiz extends BaseObservable {
+    private int selectedId;
+
     @SerializedName("id")
     @Expose
     private String id;
@@ -74,4 +78,11 @@ public class QuizTestModelDataQuiz {
         this.optionFour = optionFour;
     }
 
+    public int getSelectedId() {
+        return selectedId;
+    }
+
+    public void setSelectedId(int selectedId) {
+        this.selectedId = selectedId;
+    }
 }

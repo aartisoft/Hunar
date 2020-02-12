@@ -79,7 +79,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textColor="@color/black"
-                    android:text="The Basic Painter Course covers every aspect of basic level painting. In this course one will get to learn from the surface preparation to different types of painting methods. There are practice sessions in between to revise the content in term of gaining mastery. This course will take you from having little knowledge in painting to having deep understanding in painting. So hurry up!! Take the course and become Beginner to expert!!"
                     android:textStyle="normal"
                     android:textSize="13dp"
                     >
@@ -133,7 +132,6 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:padding="@dimen/_5sdp"
-                        android:text="To become a certified painter complete the course and pay the required amount to take the test."
                         android:textColor="@color/black"
                         android:textSize="13dp"
                         android:textStyle="normal">
