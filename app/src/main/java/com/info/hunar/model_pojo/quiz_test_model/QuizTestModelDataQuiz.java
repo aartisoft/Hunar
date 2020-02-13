@@ -9,7 +9,7 @@ import com.google.gson.annotations.SerializedName;
  * Created by Raghvendra Sahu on 09-Feb-20.
  */
 public class QuizTestModelDataQuiz extends BaseObservable {
-    private int selectedId;
+    private int selectedId=-1;
 
     @SerializedName("id")
     @Expose
