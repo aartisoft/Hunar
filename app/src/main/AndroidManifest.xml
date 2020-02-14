@@ -24,7 +24,7 @@
         android:windowSoftInputMode="stateVisible|adjustResize"
         tools:ignore="GoogleAppIndexingWarning">
         <activity android:name=".QuizAnswerActivity"></activity>
-        <activity android:name=".QuizTestActivity" />
+        <activity android:name=".QuizResultActivity" />
         <activity android:name=".activity.SubCourseDetailsActivity" />
         <activity android:name=".activity.TestKnow_Activity" />
         <activity android:name=".activity.Activity_VideoPlay" />

@@ -11,6 +11,7 @@ public interface Base_Url {
 
     String registration="registration";
     String user_login="user_login";
+    String forget_password="forget_password";
     String getwelcomevideo="get_splash_screen_video";
     String get_category="get_category";
     String get_subcategory="get_subcategory";
@@ -19,6 +20,8 @@ public interface Base_Url {
     String subcategory_detail="subcategory_detail";
     String get_quiz_question="get_quiz_question";
     String quiz_submit="quiz_submit";
+    String wishlist="wishlist";
+    String get_pdf="get_pdf";
 
 
 

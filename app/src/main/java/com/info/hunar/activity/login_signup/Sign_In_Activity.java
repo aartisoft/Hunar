@@ -21,6 +21,7 @@ import com.info.hunar.api_url.RxApiClicent;
 import com.info.hunar.databinding.ActivitySignInBinding;
 import com.info.hunar.model_pojo.registration_model.Register_field_model;
 import com.info.hunar.model_pojo.registration_model.RegistrationModel;
+import com.info.hunar.session.SessionManager;
 import com.info.hunar.utils.Conectivity;
 
 import io.reactivex.android.schedulers.AndroidSchedulers;
@@ -30,6 +31,7 @@ import io.reactivex.schedulers.Schedulers;
 public class Sign_In_Activity extends AppCompatActivity {
     ActivitySignInBinding binding;
     Register_field_model registerFieldModel;
+    SessionManager session;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +42,7 @@ public class Sign_In_Activity extends AppCompatActivity {
         registerFieldModel.setEmail("");
         registerFieldModel.setPassword("");
         binding.setModel(registerFieldModel);
+        session = new SessionManager(Sign_In_Activity.this);
 
         binding.tvNextSignin.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -59,7 +62,9 @@ public class Sign_In_Activity extends AppCompatActivity {
                             Toast.makeText(Sign_In_Activity.this, "Please check internet", Toast.LENGTH_SHORT).show();
                         }
                     }
-                    }
+                    }else {
+                    Toast.makeText(Sign_In_Activity.this, "Please enter all fields", Toast.LENGTH_SHORT).show();
+                }
 
             }
         });
@@ -98,7 +103,7 @@ public class Sign_In_Activity extends AppCompatActivity {
                             Log.e("result_my_test",""+ response.getResponce());
 
                             if (response.getResponce()==true){
-
+                                session.createSession(response.getData());
                                 Toast.makeText(Sign_In_Activity.this, "Login successful", Toast.LENGTH_SHORT).show();
 
                                 Intent intent=new Intent(Sign_In_Activity.this, Home_Activity.class);

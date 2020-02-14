@@ -20,6 +20,15 @@ public class CourseDataVideo {
     @SerializedName("subcat_id")
     @Expose
     private String subcatId;
+
+    public String getpCatId() {
+        return pCatId;
+    }
+
+    public void setpCatId(String pCatId) {
+        this.pCatId = pCatId;
+    }
+
     @SerializedName("video_name")
     @Expose
     private String videoName;
@@ -38,6 +47,9 @@ public class CourseDataVideo {
     @SerializedName("date")
     @Expose
     private String date;
+    @SerializedName("course_name")
+    @Expose
+    private String course_name;
 
     public String getId() {
         return id;
@@ -45,6 +57,14 @@ public class CourseDataVideo {
 
     public void setId(String id) {
         this.id = id;
+    }
+
+    public String getCourse_name() {
+        return course_name;
+    }
+
+    public void setCourse_name(String course_name) {
+        this.course_name = course_name;
     }
 
     public String getPCatId() {

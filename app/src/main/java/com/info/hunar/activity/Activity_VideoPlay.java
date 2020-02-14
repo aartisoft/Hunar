@@ -58,7 +58,7 @@ public class Activity_VideoPlay extends AppCompatActivity {
     private DefaultBandwidthMeter mBandwidthMeter;
     LoopingMediaSource mLoopingMediaSource;
     private ProgressBar mProgressBar;
-    String course_name,course_url;
+    String course_name,course_url,video_name,SubCategory_id;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -73,7 +73,7 @@ public class Activity_VideoPlay extends AppCompatActivity {
         mSimpleExoPlayerView = (SimpleExoPlayerView) findViewById(R.id.videoPlayer);
         mProgressBar = (ProgressBar) findViewById(R.id.amPrgbrLoading);
 
-       // txToolbar.setText("Course name");
+
 
         CalligraphyConfig.initDefault(new CalligraphyConfig.Builder()
                 .setDefaultFontPath("fonts/Roboto-Regular.ttf")
@@ -90,8 +90,11 @@ public class Activity_VideoPlay extends AppCompatActivity {
         try {
             if (getIntent()!=null){
                 course_name=getIntent().getStringExtra("course_name");
+                video_name=getIntent().getStringExtra("video_name");
                 course_url=getIntent().getStringExtra("course_url");
-                tv_course_name.setText(course_name);
+                SubCategory_id=getIntent().getStringExtra("SubCategory_id");
+                tv_course_name.setText(video_name);
+                txToolbar.setText(course_name);
             }
         }catch (Exception e){
 
@@ -101,6 +104,8 @@ public class Activity_VideoPlay extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent in = new Intent(Activity_VideoPlay.this, TestKnow_Activity.class);
+                in.putExtra("SubCategory_name", course_name);
+                in.putExtra("SubCategory_id", SubCategory_id);
                 startActivity(in);
             }
         });

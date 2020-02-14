@@ -10,13 +10,12 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.info.hunar.api_url.Api_Call;
 import com.info.hunar.api_url.Base_Url;
 import com.info.hunar.api_url.RxApiClicent;
-import com.info.hunar.QuizTestActivity;
+import com.info.hunar.QuizResultActivity;
 import com.info.hunar.R;
 import com.info.hunar.utils.Conectivity;
 import com.info.hunar.adapter.QuizTest_adapter;
@@ -31,8 +30,7 @@ import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
 public class TestKnow_Activity extends AppCompatActivity {
     ActivityTestKnowBinding binding;
-    TextView tv_test_know;
-    String SubCategory_id;
+    String SubCategory_id,SubCategory_name;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,12 +38,10 @@ public class TestKnow_Activity extends AppCompatActivity {
         //setContentView(R.layout.activity_test_know_);
          binding= DataBindingUtil.setContentView(this, R.layout.activity_test_know_);
 
-
-        tv_test_know = findViewById(R.id.tv_test_know);
-
         if (getIntent() != null) {
-            //txToolbar.setText(getIntent().getStringExtra("painter"));
             SubCategory_id = getIntent().getStringExtra("SubCategory_id");
+            SubCategory_name = getIntent().getStringExtra("SubCategory_name");
+           binding.toolbarId.txToolbar.setText(getIntent().getStringExtra(SubCategory_name));
         }
 
         if (Conectivity.isConnected(TestKnow_Activity.this)) {
@@ -54,8 +50,6 @@ public class TestKnow_Activity extends AppCompatActivity {
         } else {
             Toast.makeText(this, "Please check internet", Toast.LENGTH_SHORT).show();
         }
-
-        // txToolbar.setText("Basic painter course");
 
         binding.toolbarId.imgToolbar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -70,11 +64,12 @@ public class TestKnow_Activity extends AppCompatActivity {
         );
 
 
-        tv_test_know.setOnClickListener(new View.OnClickListener() {
+        binding.tvTestKnow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                Intent intent = new Intent(TestKnow_Activity.this, QuizTestActivity.class);
+                Intent intent = new Intent(TestKnow_Activity.this, QuizResultActivity.class);
+                intent.putExtra("Course_name",SubCategory_name);
+                intent.putExtra("SubCategory_id",SubCategory_id);
                 startActivity(intent);
             }
         });

@@ -16,10 +16,12 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.info.hunar.activity.login_signup.Sign_In_Activity;
 import com.info.hunar.api_url.Api_Call;
 import com.info.hunar.api_url.Base_Url;
 import com.info.hunar.api_url.RxApiClicent;
 import com.info.hunar.R;
+import com.info.hunar.session.SessionManager;
 import com.info.hunar.utils.Conectivity;
 import com.info.hunar.adapter.expend_recycler.CourceListAdapter;
 import com.info.hunar.adapter.expend_recycler.ExpandableRecyclerAdapter;
@@ -35,41 +37,46 @@ import io.reactivex.schedulers.Schedulers;
 
 public class SubCourseDetailsActivity extends AppCompatActivity {
     Toolbar toolbar;
-    TextView txToolbar,tv_take_know,tv_mrp,
-            tv_subcat_title,tv_desc,tv_certi,tv_offer_price;
+    TextView txToolbar, tv_take_know, tv_mrp,
+            tv_subcat_title, tv_desc, tv_certi, tv_offer_price;
     ImageView toolbarimg;
-    String SubCategory_id,Category_name,SubCategory_name;
+    String SubCategory_id, Category_name, SubCategory_name;
     RecyclerView recycler_course;
     CourceListAdapter mAdapter;
-    List<CourseData> courseDataList=new ArrayList<>();
+    List<CourseData> courseDataList = new ArrayList<>();
+    SessionManager session;
+    String userId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_subcat_course);
+        session = new SessionManager(SubCourseDetailsActivity.this);
+        userId = session.getUser().getUserId();
 
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         txToolbar = (TextView) findViewById(R.id.txToolbar);
         toolbarimg = (ImageView) findViewById(R.id.imgToolbar);
-        tv_desc =  findViewById(R.id.tv_desc);
-        tv_certi =  findViewById(R.id.tv_certi);
-        tv_offer_price =  findViewById(R.id.tv_offer_price);
+        tv_desc = findViewById(R.id.tv_desc);
+        tv_certi = findViewById(R.id.tv_certi);
+        tv_offer_price = findViewById(R.id.tv_offer_price);
         tv_mrp = findViewById(R.id.tv_mrp);
         recycler_course = findViewById(R.id.recycler_course);
         tv_take_know = (TextView) findViewById(R.id.tv_take_know);
         tv_subcat_title = findViewById(R.id.tv_subcat_title);
 
         try {
-            if (getIntent()!=null){
-                SubCategory_id=getIntent().getStringExtra("SubCategory_id");
-                Category_name=getIntent().getStringExtra("Category_name");
-                SubCategory_name=getIntent().getStringExtra("SubCategory_name");
+            if (getIntent() != null) {
+                SubCategory_id = getIntent().getStringExtra("SubCategory_id");
+                Category_name = getIntent().getStringExtra("Category_name");
+                SubCategory_name = getIntent().getStringExtra("SubCategory_name");
 
                 txToolbar.setText(Category_name);
                 tv_subcat_title.setText(SubCategory_name);
             }
 
-        }catch (Exception e){}
+        } catch (Exception e) {
+        }
 
         toolbarimg.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -78,10 +85,10 @@ public class SubCourseDetailsActivity extends AppCompatActivity {
             }
         });
         //***************************************
-        if (Conectivity.isConnected(SubCourseDetailsActivity.this)){
+        if (Conectivity.isConnected(SubCourseDetailsActivity.this)) {
             getSubCateCourdeDetails();
 
-        }else {
+        } else {
             Toast.makeText(this, "Please check internet", Toast.LENGTH_SHORT).show();
         }
 
@@ -93,8 +100,8 @@ public class SubCourseDetailsActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent in = new Intent(SubCourseDetailsActivity.this, TestKnow_Activity.class);
-                in.putExtra("painter","Basic Painter cource");
-                in.putExtra("SubCategory_id",SubCategory_id);
+                in.putExtra("SubCategory_name", SubCategory_name);
+                in.putExtra("SubCategory_id", SubCategory_id);
                 startActivity(in);
             }
         });
@@ -104,7 +111,7 @@ public class SubCourseDetailsActivity extends AppCompatActivity {
 
     @SuppressLint("CheckResult")
     private void getSubCateCourdeDetails() {
-        final ProgressDialog progressDialog =new ProgressDialog(SubCourseDetailsActivity.this,R.style.MyGravity);
+        final ProgressDialog progressDialog = new ProgressDialog(SubCourseDetailsActivity.this, R.style.MyGravity);
         progressDialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
         progressDialog.show();
 
@@ -120,23 +127,23 @@ public class SubCourseDetailsActivity extends AppCompatActivity {
                         try {
                             // CategoryArrayList.clear();
                             progressDialog.dismiss();
-                            Log.e("result_mr_product",""+ response.getResponce());
+                            Log.e("result_mr_product", "" + response.getResponce());
 
-                            if (response.getResponce()==true){
+                            if (response.getResponce() == true) {
                                 // CategoryArrayList=response.getData();
                                 tv_certi.setText(response.getData().getSubcategory().getCertificate());
                                 tv_desc.setText(response.getData().getSubcategory().getDescription());
-                                tv_offer_price.setText(" "+response.getData().getSubcategory().getOfferPrice());
-                                tv_mrp.setText("Mrp "+response.getData().getSubcategory().getMrp());
+                                tv_offer_price.setText(" " + response.getData().getSubcategory().getOfferPrice());
+                                tv_mrp.setText("Mrp " + response.getData().getSubcategory().getMrp());
 
                                 setAdapterExpand(response.getData().getCourseData());
 
-                            }else {
+                            } else {
 
                                 Toast.makeText(SubCourseDetailsActivity.this, "No record found", Toast.LENGTH_SHORT).show();
                             }
 
-                        }catch (Exception e){
+                        } catch (Exception e) {
                             progressDialog.dismiss();
                         }
 
@@ -160,7 +167,7 @@ public class SubCourseDetailsActivity extends AppCompatActivity {
 
     private void setAdapterExpand(List<CourseData> courseData) {
 
-        courseDataList=courseData;
+        courseDataList = courseData;
         mAdapter = new CourceListAdapter(this, courseDataList);
         mAdapter.setExpandCollapseListener(new ExpandableRecyclerAdapter.ExpandCollapseListener() {
             @Override

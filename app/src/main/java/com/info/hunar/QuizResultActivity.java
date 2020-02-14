@@ -1,74 +1,89 @@
-package com.info.hunar.activity.login_signup;
+package com.info.hunar;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.databinding.DataBindingUtil;
 
 import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
-import android.util.Patterns;
 import android.view.View;
-import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.info.hunar.R;
-import com.info.hunar.activity.Home_Activity;
+import com.info.hunar.activity.TestKnow_Activity;
+import com.info.hunar.activity.login_signup.ForgotPassword_Activity;
 import com.info.hunar.api_url.Api_Call;
 import com.info.hunar.api_url.Base_Url;
 import com.info.hunar.api_url.RxApiClicent;
+import com.info.hunar.databinding.ActivityTestResultBinding;
 import com.info.hunar.model_pojo.ForgotModel;
-import com.info.hunar.model_pojo.registration_model.RegistrationModel;
 import com.info.hunar.utils.Conectivity;
 
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.observers.DisposableObserver;
 import io.reactivex.schedulers.Schedulers;
 
-public class ForgotPassword_Activity extends AppCompatActivity {
-
-    EditText et_email;
-    TextView tv_next_reset;
+public class QuizResultActivity extends AppCompatActivity {
+    ActivityTestResultBinding binding;
+    String SubCategory_id;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_forgot_password_);
+       // setContentView(R.layout.activity_test_result);
+        binding= DataBindingUtil.setContentView(this, R.layout.activity_test_result);
 
-        et_email = findViewById(R.id.et_email);
-        tv_next_reset = findViewById(R.id.tv_next_reset);
+        if (getIntent() != null) {
+            SubCategory_id = getIntent().getStringExtra("SubCategory_id");
+            //SubCategory_name = getIntent().getStringExtra("SubCategory_name");
+            binding.toolbarId.txToolbar.setText(getIntent().getStringExtra("Course_name"));
+        }
 
-        tv_next_reset.setOnClickListener(new View.OnClickListener() {
+
+        binding.toolbarId.imgToolbar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                if (!et_email.getText().toString().isEmpty()) {
-                    if (!Patterns.EMAIL_ADDRESS.matcher(et_email.getText().toString()).matches()) {
-                        Toast.makeText(ForgotPassword_Activity.this, "Please enter valid email", Toast.LENGTH_SHORT).show();
-                    } else {
-                        if (Conectivity.isConnected(ForgotPassword_Activity.this)) {
-                            ForgotPwApi(et_email.getText().toString());
-                        } else {
-                            Toast.makeText(ForgotPassword_Activity.this, "Please check internet", Toast.LENGTH_SHORT).show();
-                        }
-                    }
-                } else {
-                    Toast.makeText(ForgotPassword_Activity.this, "Please enter email id", Toast.LENGTH_SHORT).show();
-                }
+                onBackPressed();
             }
         });
+
+
+        binding.ivAnswer.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(QuizResultActivity.this,QuizAnswerActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        binding.tvDownloadPdf.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (Conectivity.isConnected(QuizResultActivity.this)) {
+                    getResultPdf(SubCategory_id);
+
+                } else {
+                    Toast.makeText(QuizResultActivity.this, "Please check internet", Toast.LENGTH_SHORT).show();
+                }
+
+            }
+        });
+
     }
 
     @SuppressLint("CheckResult")
-    private void ForgotPwApi(String email) {
-        final ProgressDialog progressDialog = new ProgressDialog(ForgotPassword_Activity.this, R.style.MyGravity);
+    private void getResultPdf(String subCategory_id) {
+        final ProgressDialog progressDialog = new ProgressDialog(QuizResultActivity.this, R.style.MyGravity);
         progressDialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
         progressDialog.show();
 
         Api_Call apiInterface = RxApiClicent.getClient(Base_Url.BaseUrl).create(Api_Call.class);
 
-        apiInterface.ForgotUser(email)
+        apiInterface.GetPdf(subCategory_id)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeWith(new DisposableObserver<ForgotModel>() {
@@ -82,12 +97,11 @@ public class ForgotPassword_Activity extends AppCompatActivity {
 
                             if (response.getResponce() == true) {
 
-                                Toast.makeText(ForgotPassword_Activity.this, "" + response.getMsg(), Toast.LENGTH_SHORT).show();
+                                Toast.makeText(QuizResultActivity.this, "" + response.getMsg(), Toast.LENGTH_SHORT).show();
 
-                                onBackPressed();
                             } else {
 
-                                Toast.makeText(ForgotPassword_Activity.this, "" + response.getError_msg(), Toast.LENGTH_SHORT).show();
+                                Toast.makeText(QuizResultActivity.this, "" + response.getError_msg(), Toast.LENGTH_SHORT).show();
                             }
 
                         } catch (Exception e) {
@@ -109,8 +123,8 @@ public class ForgotPassword_Activity extends AppCompatActivity {
                         progressDialog.dismiss();
                     }
                 });
-
     }
+
 
     @Override
     public void onBackPressed() {

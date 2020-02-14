@@ -1,5 +1,7 @@
 package com.info.hunar.api_url;
 
+import com.info.hunar.model_pojo.AddRemoveWishList;
+import com.info.hunar.model_pojo.ForgotModel;
 import com.info.hunar.model_pojo.Welcome_Video_Model;
 import com.info.hunar.model_pojo.category_model.CategoryModel;
 import com.info.hunar.model_pojo.quiz_test_model.QuizTestModel;
@@ -13,13 +15,16 @@ import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
 
+import static com.info.hunar.api_url.Base_Url.forget_password;
 import static com.info.hunar.api_url.Base_Url.get_category;
+import static com.info.hunar.api_url.Base_Url.get_pdf;
 import static com.info.hunar.api_url.Base_Url.get_quiz_question;
 import static com.info.hunar.api_url.Base_Url.get_subcategory;
 import static com.info.hunar.api_url.Base_Url.getwelcomevideo;
 import static com.info.hunar.api_url.Base_Url.registration;
 import static com.info.hunar.api_url.Base_Url.subcategory_detail;
 import static com.info.hunar.api_url.Base_Url.user_login;
+import static com.info.hunar.api_url.Base_Url.wishlist;
 
 /**
  * Created by Raghvendra Sahu on 15-Jan-20.
@@ -63,6 +68,22 @@ public interface Api_Call {
             @Field("user_email") String email,
             @Field("password")String password);
 
+
+    @POST(forget_password)
+    @FormUrlEncoded
+    Observable<ForgotModel> ForgotUser(
+            @Field("user_email")  String email);
+
+    @POST(wishlist)
+    @FormUrlEncoded
+    Observable<AddRemoveWishList> AddRemoveWishlist(
+            @Field("id") String video_id,
+            @Field("user_id") String userId);
+
+    @POST(get_pdf)
+    @FormUrlEncoded
+    Observable<ForgotModel>  GetPdf(
+            @Field("subcategory_id") String subCategory_id);
 
 
 //    @FormUrlEncoded

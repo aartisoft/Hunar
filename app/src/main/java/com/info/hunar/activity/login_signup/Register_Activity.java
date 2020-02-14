@@ -31,6 +31,7 @@ import com.info.hunar.databinding.CreateNewAcBinding;
 import com.info.hunar.model_pojo.quiz_test_model.QuizTestModel;
 import com.info.hunar.model_pojo.registration_model.Register_field_model;
 import com.info.hunar.model_pojo.registration_model.RegistrationModel;
+import com.info.hunar.session.SessionManager;
 import com.info.hunar.utils.Conectivity;
 
 import io.reactivex.android.schedulers.AndroidSchedulers;
@@ -43,6 +44,7 @@ public class Register_Activity extends AppCompatActivity {
     CreateNewAcBinding binding;
     Register_field_model registerFieldModel;
     private String Gender;
+    SessionManager session;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -50,7 +52,7 @@ public class Register_Activity extends AppCompatActivity {
         //setContentView(R.layout.create_new_ac);
         binding = DataBindingUtil.setContentView(this, R.layout.create_new_ac);
         binding.setRegisterActivity(this);
-
+        session = new SessionManager(Register_Activity.this);
         registerFieldModel = new Register_field_model(Register_Activity.this);
         registerFieldModel.setName("");
         registerFieldModel.setEmail("");
@@ -126,7 +128,7 @@ public class Register_Activity extends AppCompatActivity {
                             Log.e("result_my_test",""+ response.getResponce());
 
                             if (response.getResponce()==true){
-
+                                session.createSession(response.getData());
                                 Toast.makeText(Register_Activity.this, "Register successful", Toast.LENGTH_SHORT).show();
 
                                 Intent intent=new Intent(Register_Activity.this, Home_Activity.class);

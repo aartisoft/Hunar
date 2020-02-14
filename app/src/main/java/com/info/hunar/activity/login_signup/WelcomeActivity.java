@@ -17,6 +17,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.MediaController;
 import android.widget.TextView;
+import android.widget.Toast;
 import android.widget.VideoView;
 
 import androidx.annotation.Nullable;
@@ -31,6 +32,7 @@ import com.info.hunar.adapter.Slide_Activity_Adapter;
 import com.info.hunar.activity.Home_Activity;
 import com.info.hunar.R;
 import com.info.hunar.model_pojo.Welcome_Video_Model;
+import com.info.hunar.session.SessionManager;
 
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.observers.DisposableObserver;
@@ -52,6 +54,7 @@ public class WelcomeActivity extends AppCompatActivity implements ViewPager.OnPa
     VideoView myVideo;
     Api_Call apiInterface;
     private TextView tv_skipvid;
+    SessionManager sessionManager;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -59,6 +62,8 @@ public class WelcomeActivity extends AppCompatActivity implements ViewPager.OnPa
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_slide);
+        sessionManager=new SessionManager(WelcomeActivity.this);
+        
         apiInterface = RxApiClicent.getClient(Base_Url.BaseUrl).create(Api_Call.class);
         mContext = WelcomeActivity.this;
         signin = (Button) findViewById(R.id.buttonsign);
@@ -95,11 +100,16 @@ public class WelcomeActivity extends AppCompatActivity implements ViewPager.OnPa
         browse.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent in = new Intent(mContext, Home_Activity.class);
-                startActivity(in);
-                overridePendingTransition(R.anim.anim_slide_in_left,
-                        R.anim.anim_slide_out_left);
-                finish();
+                if (sessionManager.isLoggedIn()){
+                    Intent in = new Intent(mContext, Home_Activity.class);
+                    startActivity(in);
+                    overridePendingTransition(R.anim.anim_slide_in_left,
+                            R.anim.anim_slide_out_left);
+                    finish();
+                }else {
+                    Toast.makeText(WelcomeActivity.this, "Please login first", Toast.LENGTH_SHORT).show();
+                }
+          
             }
         });
         signin.setOnClickListener(new View.OnClickListener() {
