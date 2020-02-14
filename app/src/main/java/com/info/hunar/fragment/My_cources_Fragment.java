@@ -1,4 +1,4 @@
-package com.info.hunar.Fragment;
+package com.info.hunar.fragment;
 
 import android.net.Uri;
 import android.os.Bundle;
@@ -13,7 +13,7 @@ import android.view.ViewGroup;
 
 import com.info.hunar.R;
 
-import static com.info.hunar.Activity.Home_Activity.card_search;
+import static com.info.hunar.activity.Home_Activity.card_search;
 
 /**
  * A simple {@link Fragment} subclass.

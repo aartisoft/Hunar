@@ -1,4 +1,4 @@
-package com.info.hunar.Activity.LoginSignup;
+package com.info.hunar.activity.login_signup;
 
 import androidx.appcompat.app.AppCompatActivity;
 

@@ -8,7 +8,7 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
-import com.info.hunar.Api_Url.Base_Url;
+import com.info.hunar.api_url.Base_Url;
 
 /**
  * Created by Raghvendra Sahu on 15-Jan-20.

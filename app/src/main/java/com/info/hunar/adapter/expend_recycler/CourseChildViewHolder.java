@@ -5,7 +5,7 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.info.hunar.R;
-import com.info.hunar.Activity.Activity_VideoPlay;
+import com.info.hunar.activity.Activity_VideoPlay;
 import com.info.hunar.model_pojo.subcategory_course_model.CourseDataVideo;
 
 /**

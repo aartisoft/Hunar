@@ -1,4 +1,4 @@
-package com.info.hunar.Fragment;
+package com.info.hunar.fragment;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -11,8 +11,8 @@ import com.info.hunar.R;
 
 import uk.co.chrisjenx.calligraphy.CalligraphyConfig;
 
-import static com.info.hunar.Activity.Home_Activity.bottombar;
-import static com.info.hunar.Activity.Home_Activity.card_search;
+import static com.info.hunar.activity.Home_Activity.bottombar;
+import static com.info.hunar.activity.Home_Activity.card_search;
 
 public class Searching_Course_fragment extends Fragment {
 

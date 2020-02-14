@@ -25,14 +25,14 @@
         tools:ignore="GoogleAppIndexingWarning">
         <activity android:name=".QuizAnswerActivity"></activity>
         <activity android:name=".QuizTestActivity" />
-        <activity android:name=".Activity.SubCourseDetailsActivity" />
-        <activity android:name=".Activity.TestKnow_Activity" />
-        <activity android:name=".Activity.Activity_VideoPlay" />
-        <activity android:name=".Activity.LoginSignup.ForgotPassword_Activity" />
-        <activity android:name=".Activity.LoginSignup.Sign_In_Activity" />
-        <activity android:name=".Activity.LoginSignup.Create_New_Account_Activity" />
+        <activity android:name=".activity.SubCourseDetailsActivity" />
+        <activity android:name=".activity.TestKnow_Activity" />
+        <activity android:name=".activity.Activity_VideoPlay" />
+        <activity android:name=".activity.login_signup.ForgotPassword_Activity" />
+        <activity android:name=".activity.login_signup.Sign_In_Activity" />
+        <activity android:name=".activity.login_signup.Create_New_Account_Activity" />
         <activity
-            android:name=".Activity.LoginSignup.Splash_Activity"
+            android:name=".activity.login_signup.Splash_Activity"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -41,12 +41,12 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".Activity.LoginSignup.Login_Activity"
+            android:name=".activity.login_signup.Login_Activity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar"
             android:windowSoftInputMode="adjustPan|adjustResize|stateHidden" />
         <activity
-            android:name=".Activity.LoginSignup.Register_Activity"
+            android:name=".activity.login_signup.Register_Activity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar"
             android:windowSoftInputMode="adjustPan|stateHidden" />
@@ -56,15 +56,15 @@
             android:theme="@style/AppTheme.NoActionBar"
             android:windowSoftInputMode="adjustPan|adjustResize|stateHidden" />
         <activity
-            android:name=".Activity.LoginSignup.WelcomeActivity"
+            android:name=".activity.login_signup.WelcomeActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".Activity.Home_Activity"
+            android:name=".activity.Home_Activity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar"
             android:windowSoftInputMode="adjustPan|adjustResize|stateHidden" />
         <activity
-            android:name=".Activity.SubCategory_activity"
+            android:name=".activity.SubCategory_activity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar"
             android:windowSoftInputMode="adjustPan|adjustResize|stateHidden" />

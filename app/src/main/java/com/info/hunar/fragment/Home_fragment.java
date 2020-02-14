@@ -1,4 +1,4 @@
-package com.info.hunar.Fragment;
+package com.info.hunar.fragment;
 
 import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
@@ -14,11 +14,11 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.info.hunar.adapter.CategoryAdapter;
-import com.info.hunar.Api_Url.Api_Call;
-import com.info.hunar.Api_Url.Base_Url;
-import com.info.hunar.Api_Url.RxApiClicent;
+import com.info.hunar.api_url.Api_Call;
+import com.info.hunar.api_url.Base_Url;
+import com.info.hunar.api_url.RxApiClicent;
 import com.info.hunar.R;
-import com.info.hunar.Utils.Conectivity;
+import com.info.hunar.utils.Conectivity;
 import com.info.hunar.databinding.FragmentFeaturedFragmentBinding;
 import com.info.hunar.model_pojo.category_model.CategoryModel;
 
@@ -27,7 +27,7 @@ import io.reactivex.observers.DisposableObserver;
 import io.reactivex.schedulers.Schedulers;
 import uk.co.chrisjenx.calligraphy.CalligraphyConfig;
 
-import static com.info.hunar.Activity.Home_Activity.card_search;
+import static com.info.hunar.activity.Home_Activity.card_search;
 
 
 public class Home_fragment extends Fragment {

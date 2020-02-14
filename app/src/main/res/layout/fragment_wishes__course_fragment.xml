@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="@drawable/bg_gradient"
-    tools:context=".Fragment.Wishes_Course_fragment">
+    tools:context=".fragment.Wishes_Course_fragment">
 
 
     <ScrollView

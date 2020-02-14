@@ -9,7 +9,7 @@ import androidx.databinding.DataBindingUtil;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.info.hunar.BR;
-import com.info.hunar.Activity.SubCategory_activity;
+import com.info.hunar.activity.SubCategory_activity;
 import com.info.hunar.R;
 import com.info.hunar.binding_interface.HomeCategoryClickListener;
 import com.info.hunar.databinding.CategoryItemBinding;

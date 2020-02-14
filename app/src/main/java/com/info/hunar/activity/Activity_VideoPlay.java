@@ -1,4 +1,4 @@
-package com.info.hunar.Activity;
+package com.info.hunar.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -36,12 +36,12 @@ import com.google.android.exoplayer2.upstream.DefaultBandwidthMeter;
 import com.google.android.exoplayer2.upstream.DefaultDataSourceFactory;
 import com.google.android.exoplayer2.util.Util;
 import com.info.hunar.R;
-import com.info.hunar.Utils.Conectivity;
+import com.info.hunar.utils.Conectivity;
 
 import uk.co.chrisjenx.calligraphy.CalligraphyConfig;
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
-import static com.info.hunar.Api_Url.Base_Url.CategoryImage_URL;
+import static com.info.hunar.api_url.Base_Url.CategoryImage_URL;
 
 public class Activity_VideoPlay extends AppCompatActivity {
 

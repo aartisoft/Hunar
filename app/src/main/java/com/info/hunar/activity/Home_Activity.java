@@ -1,4 +1,4 @@
-package com.info.hunar.Activity;
+package com.info.hunar.activity;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -15,10 +15,10 @@ import androidx.fragment.app.FragmentTransaction;
 
 import com.eightbitlab.bottomnavigationbar.BottomBarItem;
 import com.eightbitlab.bottomnavigationbar.BottomNavigationBar;
-import com.info.hunar.Fragment.Home_fragment;
-import com.info.hunar.Fragment.Profile_Fragment;
-import com.info.hunar.Fragment.Searching_Course_fragment;
-import com.info.hunar.Fragment.Wishes_Course_fragment;
+import com.info.hunar.fragment.Home_fragment;
+import com.info.hunar.fragment.Profile_Fragment;
+import com.info.hunar.fragment.Searching_Course_fragment;
+import com.info.hunar.fragment.Wishes_Course_fragment;
 import com.info.hunar.R;
 import com.smarteist.autoimageslider.SliderView;
 
@@ -164,5 +164,11 @@ public class Home_Activity extends AppCompatActivity
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        finish();
     }
 }

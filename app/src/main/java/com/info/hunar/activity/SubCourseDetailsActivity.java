@@ -1,4 +1,4 @@
-package com.info.hunar.Activity;
+package com.info.hunar.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -16,11 +16,11 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.info.hunar.Api_Url.Api_Call;
-import com.info.hunar.Api_Url.Base_Url;
-import com.info.hunar.Api_Url.RxApiClicent;
+import com.info.hunar.api_url.Api_Call;
+import com.info.hunar.api_url.Base_Url;
+import com.info.hunar.api_url.RxApiClicent;
 import com.info.hunar.R;
-import com.info.hunar.Utils.Conectivity;
+import com.info.hunar.utils.Conectivity;
 import com.info.hunar.adapter.expend_recycler.CourceListAdapter;
 import com.info.hunar.adapter.expend_recycler.ExpandableRecyclerAdapter;
 import com.info.hunar.model_pojo.subcategory_course_model.CourseData;

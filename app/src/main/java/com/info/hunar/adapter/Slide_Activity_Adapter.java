@@ -11,9 +11,9 @@ import android.widget.TextView;
 
 import androidx.viewpager.widget.PagerAdapter;
 
-import com.info.hunar.Activity.LoginSignup.Login_Activity;
+import com.info.hunar.activity.login_signup.Login_Activity;
 import com.info.hunar.R;
-import com.info.hunar.Activity.LoginSignup.WelcomeActivity;
+import com.info.hunar.activity.login_signup.WelcomeActivity;
 
 public class Slide_Activity_Adapter  extends PagerAdapter {
     private Context mContext;

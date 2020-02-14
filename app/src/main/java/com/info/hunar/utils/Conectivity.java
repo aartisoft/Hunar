@@ -1,4 +1,4 @@
-package com.info.hunar.Utils;
+package com.info.hunar.utils;
 
 import android.content.Context;
 import android.net.ConnectivityManager;

@@ -8,7 +8,7 @@
     android:orientation="vertical"
     android:weightSum="1"
     android:background="@drawable/bg_gradient"
-    tools:context=".Activity.Activity_VideoPlay">
+    tools:context=".activity.Activity_VideoPlay">
 
     <include
         layout="@layout/layout_toolbar"/>

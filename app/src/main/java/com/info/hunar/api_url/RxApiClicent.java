@@ -1,4 +1,4 @@
-package com.info.hunar.Api_Url;
+package com.info.hunar.api_url;
 
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;

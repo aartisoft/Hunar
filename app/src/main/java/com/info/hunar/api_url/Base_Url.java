@@ -1,4 +1,4 @@
-package com.info.hunar.Api_Url;
+package com.info.hunar.api_url;
 
 /**
  * Created by Raghvendra Sahu on 15-Jan-20.
@@ -9,6 +9,8 @@ public interface Base_Url {
 
     String CategoryImage_URL="https://www.lotusenterprises.net/hunar/";
 
+    String registration="registration";
+    String user_login="user_login";
     String getwelcomevideo="get_splash_screen_video";
     String get_category="get_category";
     String get_subcategory="get_subcategory";
@@ -17,6 +19,7 @@ public interface Base_Url {
     String subcategory_detail="subcategory_detail";
     String get_quiz_question="get_quiz_question";
     String quiz_submit="quiz_submit";
+
 
 
 }

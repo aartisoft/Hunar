@@ -1,4 +1,4 @@
-package com.info.hunar.Activity;
+package com.info.hunar.activity;
 
 import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
@@ -12,11 +12,11 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 
-import com.info.hunar.Api_Url.Api_Call;
-import com.info.hunar.Api_Url.Base_Url;
-import com.info.hunar.Api_Url.RxApiClicent;
+import com.info.hunar.api_url.Api_Call;
+import com.info.hunar.api_url.Base_Url;
+import com.info.hunar.api_url.RxApiClicent;
 import com.info.hunar.R;
-import com.info.hunar.Utils.Conectivity;
+import com.info.hunar.utils.Conectivity;
 import com.info.hunar.adapter.SubCategoryAdapter;
 import com.info.hunar.databinding.SubcatActivityBinding;
 import com.info.hunar.model_pojo.category_model.CategoryModel;

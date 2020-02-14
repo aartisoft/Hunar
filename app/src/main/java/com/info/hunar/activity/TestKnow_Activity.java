@@ -1,4 +1,4 @@
-package com.info.hunar.Activity;
+package com.info.hunar.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
@@ -13,12 +13,12 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.info.hunar.Api_Url.Api_Call;
-import com.info.hunar.Api_Url.Base_Url;
-import com.info.hunar.Api_Url.RxApiClicent;
+import com.info.hunar.api_url.Api_Call;
+import com.info.hunar.api_url.Base_Url;
+import com.info.hunar.api_url.RxApiClicent;
 import com.info.hunar.QuizTestActivity;
 import com.info.hunar.R;
-import com.info.hunar.Utils.Conectivity;
+import com.info.hunar.utils.Conectivity;
 import com.info.hunar.adapter.QuizTest_adapter;
 import com.info.hunar.databinding.ActivityTestKnowBinding;
 import com.info.hunar.model_pojo.quiz_test_model.QuizTestModel;

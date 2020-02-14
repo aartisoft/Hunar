@@ -1,4 +1,4 @@
-package com.info.hunar.Activity;
+package com.info.hunar.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 

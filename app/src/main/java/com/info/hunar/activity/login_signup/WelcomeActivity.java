@@ -1,4 +1,4 @@
-package com.info.hunar.Activity.LoginSignup;
+package com.info.hunar.activity.login_signup;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -24,15 +24,14 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager.widget.ViewPager;
 
 import com.ToxicBakery.viewpager.transforms.ZoomOutSlideTransformer;
-import com.info.hunar.Api_Url.Api_Call;
-import com.info.hunar.Api_Url.Base_Url;
-import com.info.hunar.Api_Url.RxApiClicent;
+import com.info.hunar.api_url.Api_Call;
+import com.info.hunar.api_url.Base_Url;
+import com.info.hunar.api_url.RxApiClicent;
 import com.info.hunar.adapter.Slide_Activity_Adapter;
-import com.info.hunar.Activity.Home_Activity;
+import com.info.hunar.activity.Home_Activity;
 import com.info.hunar.R;
 import com.info.hunar.model_pojo.Welcome_Video_Model;
 
-import io.reactivex.Scheduler;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.observers.DisposableObserver;
 import io.reactivex.schedulers.Schedulers;
@@ -100,6 +99,7 @@ public class WelcomeActivity extends AppCompatActivity implements ViewPager.OnPa
                 startActivity(in);
                 overridePendingTransition(R.anim.anim_slide_in_left,
                         R.anim.anim_slide_out_left);
+                finish();
             }
         });
         signin.setOnClickListener(new View.OnClickListener() {
@@ -109,6 +109,7 @@ public class WelcomeActivity extends AppCompatActivity implements ViewPager.OnPa
                 startActivity(in);
                 overridePendingTransition(R.anim.anim_slide_in_left,
                         R.anim.anim_slide_out_left);
+                finish();
             }
         });
 
@@ -119,6 +120,7 @@ public class WelcomeActivity extends AppCompatActivity implements ViewPager.OnPa
                 startActivity(in);
                 overridePendingTransition(R.anim.anim_slide_in_left,
                         R.anim.anim_slide_out_left);
+                finish();
             }});
 
         CalligraphyConfig.initDefault(new CalligraphyConfig.Builder()
@@ -241,5 +243,6 @@ public class WelcomeActivity extends AppCompatActivity implements ViewPager.OnPa
     @Override
     public void onBackPressed() {
         //super.onBackPressed();
+        finish();
         }
 }
