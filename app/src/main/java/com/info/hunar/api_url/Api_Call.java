@@ -23,6 +23,7 @@ import static com.info.hunar.api_url.Base_Url.get_subcategory;
 import static com.info.hunar.api_url.Base_Url.getwelcomevideo;
 import static com.info.hunar.api_url.Base_Url.registration;
 import static com.info.hunar.api_url.Base_Url.subcategory_detail;
+import static com.info.hunar.api_url.Base_Url.update_profile;
 import static com.info.hunar.api_url.Base_Url.user_login;
 import static com.info.hunar.api_url.Base_Url.wishlist;
 
@@ -84,6 +85,16 @@ public interface Api_Call {
     @FormUrlEncoded
     Observable<ForgotModel>  GetPdf(
             @Field("subcategory_id") String subCategory_id);
+
+    @POST(update_profile)
+    @FormUrlEncoded
+    Observable<RegistrationModel> UpdateUser(
+            @Field("name") String name,
+            @Field("user_email") String email,
+            @Field("mobile_no") String mobile,
+            @Field("address") String address,
+            @Field("gender") String gender,
+            @Field("user_id") String user_id);
 
 
 //    @FormUrlEncoded

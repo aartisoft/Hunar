@@ -22,6 +22,7 @@ public interface Base_Url {
     String quiz_submit="quiz_submit";
     String wishlist="wishlist";
     String get_pdf="get_pdf";
+    String update_profile="update_profile";
 
 
 

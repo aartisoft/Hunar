@@ -1,225 +1,373 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<layout>
+    <data>
+
+        <variable
+            name="model"
+            type="com.info.hunar.model_pojo.registration_model.Register_field_model"/>
+
+    </data>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    >
+    android:orientation="vertical">
 
-    <ImageView
-        android:id="@+id/ic_back"
-        android:layout_width="60dp"
-        android:layout_height="50dp"
-        android:layout_marginTop="16dp"
-        android:src="@drawable/ic_keyboard_arrow_left_black_24dp"
-        android:layout_gravity="center"/>
 
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scrollbars="none"
+        >
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_marginTop="20pt"
-        >
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
         <ImageView
+            android:id="@+id/ic_back"
+            android:layout_width="60dp"
+            android:layout_height="50dp"
+            android:layout_gravity="left"
+            android:layout_marginTop="10dp"
+            android:src="@drawable/ic_keyboard_arrow_left_black_24dp" />
+
+
+        <ImageView
+            android:layout_marginTop="5dp"
             android:layout_width="100dp"
             android:layout_height="100dp"
-            android:src="@drawable/logo"
-            android:layout_gravity="center"/>
+            android:layout_gravity="center"
+            android:src="@drawable/logo" />
 
 
         <TextView
+            android:id="@+id/tv_name"
+            style="@style/bold_tx"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="HUNAR"
-            style="@style/bold_tx"
-            android:textColor="@color/colorPrimary"
             android:layout_gravity="center"
-            android:textSize="12pt"
-            />
+            android:text="@={model.name}"
+            android:textColor="@color/colorPrimary"
+            android:textSize="12pt" />
 
         <ImageView
             android:id="@+id/ic_editprofile"
-            android:layout_width="20dp"
-            android:layout_height="20dp"
-            android:src="@drawable/edit_profile"
+            android:layout_width="@dimen/_24sdp"
+            android:layout_height="@dimen/_24sdp"
             android:layout_gravity="end"
-            android:layout_marginEnd="20dp"/>
+            android:layout_marginEnd="20dp"
+            android:src="@drawable/pw_icon"
+            />
 
         <TextView
+            style="@style/bold_tx"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="PROFILE"
-            style="@style/bold_tx"
-            android:textColor="@color/colorPrimary"
             android:layout_gravity="start"
             android:layout_marginLeft="10dp"
-            android:textSize="9pt"
-            />
+            android:text="PROFILE"
+            android:textColor="@color/colorPrimary"
+            android:textSize="9pt" />
 
 
         <View
             android:layout_width="match_parent"
             android:layout_height="0.66dp"
             android:layout_margin="10dp"
-            android:background="@color/blue"
-            />
+            android:background="@color/blue" />
 
         <LinearLayout
+            android:weightSum="1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
             android:layout_margin="10dp"
-            >
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_gravity="center_vertical"
+                android:layout_weight="0.65"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                >
 
             <ImageView
                 android:layout_width="23dp"
                 android:layout_height="23dp"
-                android:src="@drawable/name"
+                android:layout_gravity="center_vertical"
                 android:layout_marginTop="2dp"
-                />
+                android:src="@drawable/name" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Name : "
-                android:textColor="@color/grey"
-                android:textSize="8pt"
                 android:layout_marginLeft="4dp"
                 android:layout_marginTop="2dp"
-                />
+                android:text="Name : "
+                android:textColor="@color/grey"
+                android:textSize="8pt" />
 
-            <TextView
-                android:id="@+id/tx_name"
+            </LinearLayout>
+
+
+            <EditText
+                android:windowSoftInputMode="stateAlwaysVisible"
+                android:overScrollMode="always"
+                android:scrollbarStyle="insideInset"
+                android:scrollbars="vertical"
+                android:singleLine="false"
+                android:isScrollContainer="true"
+                android:focusable="true"
+                android:layout_weight="0.35"
+                android:id="@+id/et_name"
+                android:text="@={model.name}"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Aakash Sharma"
-                android:textColor="@color/black"
-                android:textSize="8pt"
-                android:layout_marginLeft="20pt"
                 android:layout_marginTop="2dp"
-                />
+                android:inputType="text"
+                android:textColor="@color/black"
+                android:textSize="8pt" />
 
         </LinearLayout>
 
         <LinearLayout
+            android:weightSum="1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_margin="10dp">
+            android:layout_margin="10dp"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_gravity="center_vertical"
+                android:layout_weight="0.65"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                >
 
             <ImageView
                 android:layout_width="23dp"
                 android:layout_height="23dp"
-                android:src="@drawable/phone"
+                android:layout_gravity="center_vertical"
                 android:layout_marginTop="2dp"
-                />
+                android:src="@drawable/phone" />
 
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Mobile No. : "
-                android:textColor="@color/grey"
-                android:textSize="8pt"
                 android:layout_marginLeft="6dp"
                 android:layout_marginTop="2dp"
-                />
+                android:text="Mobile No : "
+                android:textColor="@color/grey"
+                android:textSize="8pt" />
 
-            <TextView
-                android:id="@+id/tx_mobile"
+            </LinearLayout>
+
+            <EditText
+                android:windowSoftInputMode="stateAlwaysVisible"
+                android:overScrollMode="always"
+                android:scrollbarStyle="insideInset"
+                android:scrollbars="vertical"
+                android:singleLine="false"
+                android:isScrollContainer="true"
+                android:focusable="true"
+                android:layout_weight="0.35"
+                android:id="@+id/et_mobile"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="9977262554"
-                android:textColor="@color/black"
-                android:textSize="8pt"
-                android:layout_marginLeft="7dp"
+                android:inputType="number"
                 android:layout_marginTop="2dp"
-                />
+                android:text="@={model.mobile}"
+                android:textColor="@color/black"
+                android:textSize="8pt" />
 
         </LinearLayout>
 
         <LinearLayout
+            android:weightSum="1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_margin="10dp">
+            android:layout_margin="10dp"
+            android:orientation="horizontal">
 
+            <LinearLayout
+                android:layout_gravity="center_vertical"
+                android:layout_weight="0.65"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                >
 
             <ImageView
                 android:layout_width="23dp"
                 android:layout_height="23dp"
-                android:src="@drawable/email"
+                android:layout_gravity="center_vertical"
                 android:layout_marginTop="2dp"
-                />
+                android:src="@drawable/email" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="6dp"
+                android:layout_marginTop="2dp"
                 android:text="E-Mail : "
                 android:textColor="@color/grey"
-                android:textSize="8pt"
-                android:layout_marginLeft="6dp"
-                android:layout_marginTop="2dp"
-                />
+                android:textSize="8pt" />
+            </LinearLayout>
 
-            <TextView
-                android:id="@+id/tx_mail"
+            <EditText
+                android:windowSoftInputMode="stateAlwaysVisible"
+                android:overScrollMode="always"
+                android:scrollbarStyle="insideInset"
+                android:scrollbars="vertical"
+                android:singleLine="false"
+                android:isScrollContainer="true"
+                android:focusable="true"
+                android:layout_weight="0.35"
+                android:id="@+id/et_mail"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Aakash039@gmail.com"
-                android:textColor="@color/black"
-                android:textSize="8pt"
-                android:layout_marginLeft="19pt"
                 android:layout_marginTop="2dp"
-                />
+                android:text="@={model.email}"
+                android:inputType="text"
+                android:textColor="@color/black"
+                android:textSize="8pt" />
 
         </LinearLayout>
 
         <LinearLayout
+            android:weightSum="1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_margin="10dp">
+            android:layout_margin="10dp"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_gravity="center_vertical"
+                android:layout_weight="0.65"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                >
 
             <ImageView
                 android:layout_width="23dp"
                 android:layout_height="20dp"
-                android:src="@drawable/home"
+                android:layout_gravity="center_vertical"
                 android:layout_marginTop="2dp"
-                />
+                android:src="@drawable/home" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Address : "
-                android:textColor="@color/grey"
-                android:textSize="8pt"
                 android:layout_marginLeft="6dp"
                 android:layout_marginTop="2dp"
-                />
+                android:text="Address : "
+                android:textColor="@color/grey"
+                android:textSize="8pt" />
 
-            <TextView
-                android:id="@+id/tx_address"
+            </LinearLayout>
+
+            <EditText
+                android:windowSoftInputMode="stateAlwaysVisible"
+                android:overScrollMode="always"
+                android:scrollbarStyle="insideInset"
+                android:scrollbars="vertical"
+                android:singleLine="false"
+                android:isScrollContainer="true"
+                android:focusable="true"
+                android:layout_weight="0.35"
+                android:id="@+id/et_address"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Vijay Nagar, Indore"
-                android:textColor="@color/black"
-                android:textSize="8pt"
-                android:layout_marginLeft="12.44pt"
                 android:layout_marginTop="2dp"
-                />
+                android:text="@={model.address}"
+                android:inputType="text"
+                android:textColor="@color/black"
+                android:textSize="8pt" />
 
         </LinearLayout>
 
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="0.66dp"
+
+        <LinearLayout
             android:layout_margin="10dp"
-            android:background="@color/blue"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:weightSum="1">
+
+            <TextView
+                style="@style/bold_tx"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/img_logo"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:text="Gender"
+                android:textColor="@color/colorPrimary"
+                android:textSize="@dimen/_12sdp" />
+
+
+            <RadioGroup
+                android:id="@+id/radio_group"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:checkedButton="@={model.selectedId}"
+                android:orientation="horizontal">
+
+                <RadioButton
+                    android:id="@+id/radio_male"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.5"
+                    android:text="Male">
+
+                </RadioButton>
+
+                <RadioButton
+                    android:id="@+id/radio_female"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.5"
+                    android:text="Female">
+
+                </RadioButton>
+
+            </RadioGroup>
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/tv_update"
+            android:layout_margin="20dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:singleLine="false"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:text="Update"
+            android:textSize="16dp"
+            android:textStyle="bold"
+            style="@style/boldtx"
+            android:padding="15dp"
+            android:background="@color/colorPrimary"
+            android:textColor="@color/white"
+            android:textAlignment="center"
             />
+
+<!--        <View-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="0.66dp"-->
+<!--            android:layout_margin="10dp"-->
+<!--            android:background="@color/blue" />-->
 
     </LinearLayout>
 
+    </androidx.core.widget.NestedScrollView>
 </RelativeLayout>
+
+</layout>
