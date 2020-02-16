@@ -98,13 +98,13 @@ public class QuizTest_adapter extends RecyclerView.Adapter<QuizTest_adapter.View
                     RadioButton btn = (RadioButton) holder.itemRowBinding.radioGroup.getChildAt(x);
 
                     if (btn.getId() == i) {
-                        selectedAnswers.set(i, btn.getText().toString());
+                        //selectedAnswers.set(i, btn.getText().toString());
                         System.out.println(btn.getText().toString());
 
                         selectedQuizListData.add(new SelectedQuizData(dataModel.getId(),btn.getText().toString()));
 
                         Log.e("sele_quiz_data", "" + selectedQuizListData);
-                        Log.e("sele_quiz_data1", "" + selectedAnswers);
+                        //Log.e("sele_quiz_data1", "" + selectedAnswers);
                     }
                     }
             }

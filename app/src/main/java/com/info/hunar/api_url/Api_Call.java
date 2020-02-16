@@ -6,6 +6,8 @@ import com.info.hunar.model_pojo.Welcome_Video_Model;
 import com.info.hunar.model_pojo.category_model.CategoryModel;
 import com.info.hunar.model_pojo.quiz_test_model.QuizTestModel;
 import com.info.hunar.model_pojo.registration_model.RegistrationModel;
+import com.info.hunar.model_pojo.result_model.ResultModel;
+import com.info.hunar.model_pojo.result_model.ResultPdfModel;
 import com.info.hunar.model_pojo.subcategory_course_model.Sub_course_details_model;
 
 import io.reactivex.Completable;
@@ -21,6 +23,7 @@ import static com.info.hunar.api_url.Base_Url.get_pdf;
 import static com.info.hunar.api_url.Base_Url.get_quiz_question;
 import static com.info.hunar.api_url.Base_Url.get_subcategory;
 import static com.info.hunar.api_url.Base_Url.getwelcomevideo;
+import static com.info.hunar.api_url.Base_Url.quiz_user_result;
 import static com.info.hunar.api_url.Base_Url.registration;
 import static com.info.hunar.api_url.Base_Url.subcategory_detail;
 import static com.info.hunar.api_url.Base_Url.update_profile;
@@ -83,7 +86,7 @@ public interface Api_Call {
 
     @POST(get_pdf)
     @FormUrlEncoded
-    Observable<ForgotModel>  GetPdf(
+    Observable<ResultPdfModel>  GetPdf(
             @Field("subcategory_id") String subCategory_id);
 
     @POST(update_profile)
@@ -95,6 +98,13 @@ public interface Api_Call {
             @Field("address") String address,
             @Field("gender") String gender,
             @Field("user_id") String user_id);
+
+
+    @POST(quiz_user_result)
+    @FormUrlEncoded
+    Observable<ResultModel> GetResultScore(
+            @Field("subcategory_id")  String subCategory_id,
+            @Field("user_id") String userId);
 
 
 //    @FormUrlEncoded

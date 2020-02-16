@@ -15,7 +15,6 @@ import android.widget.Toast;
 import com.info.hunar.api_url.Api_Call;
 import com.info.hunar.api_url.Base_Url;
 import com.info.hunar.api_url.RxApiClicent;
-import com.info.hunar.QuizResultActivity;
 import com.info.hunar.R;
 import com.info.hunar.utils.Conectivity;
 import com.info.hunar.adapter.QuizTest_adapter;
@@ -41,7 +40,7 @@ public class TestKnow_Activity extends AppCompatActivity {
         if (getIntent() != null) {
             SubCategory_id = getIntent().getStringExtra("SubCategory_id");
             SubCategory_name = getIntent().getStringExtra("SubCategory_name");
-           binding.toolbarId.txToolbar.setText(getIntent().getStringExtra(SubCategory_name));
+           binding.toolbarId.txToolbar.setText(SubCategory_name);
         }
 
         if (Conectivity.isConnected(TestKnow_Activity.this)) {
