@@ -16,10 +16,14 @@ import com.info.hunar.api_url.Api_Call;
 import com.info.hunar.api_url.Base_Url;
 import com.info.hunar.api_url.RxApiClicent;
 import com.info.hunar.R;
+import com.info.hunar.model_pojo.quiz_test_model.QuizTestModelDataQuiz;
 import com.info.hunar.utils.Conectivity;
 import com.info.hunar.adapter.QuizTest_adapter;
 import com.info.hunar.databinding.ActivityTestKnowBinding;
 import com.info.hunar.model_pojo.quiz_test_model.QuizTestModel;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.observers.DisposableObserver;
@@ -30,6 +34,9 @@ import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 public class TestKnow_Activity extends AppCompatActivity {
     ActivityTestKnowBinding binding;
     String SubCategory_id,SubCategory_name;
+    List<QuizTestModelDataQuiz>quizList=new ArrayList();
+    String id,option;
+    QuizTest_adapter  quizTest_adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,7 +51,7 @@ public class TestKnow_Activity extends AppCompatActivity {
         }
 
         if (Conectivity.isConnected(TestKnow_Activity.this)) {
-            getSubCateCourdeDetails();
+            getQuizQues();
 
         } else {
             Toast.makeText(this, "Please check internet", Toast.LENGTH_SHORT).show();
@@ -63,9 +70,18 @@ public class TestKnow_Activity extends AppCompatActivity {
         );
 
 
-        binding.tvTestKnow.setOnClickListener(new View.OnClickListener() {
+        binding.tvTestScore.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                ///if (quizTest_adapter!=null){
+
+                    //quizTest_adapter.getRadioChecked();
+                    Log.e("ans_radio1",""+quizTest_adapter.getRadioChecked());
+               // }
+
+
+                //**********after api call
                 Intent intent = new Intent(TestKnow_Activity.this, QuizResultActivity.class);
                 intent.putExtra("Course_name",SubCategory_name);
                 intent.putExtra("SubCategory_id",SubCategory_id);
@@ -76,7 +92,7 @@ public class TestKnow_Activity extends AppCompatActivity {
     }
 
     @SuppressLint("CheckResult")
-    private void getSubCateCourdeDetails() {
+    private void getQuizQues() {
         final ProgressDialog progressDialog =new ProgressDialog(TestKnow_Activity.this,R.style.MyGravity);
         progressDialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
         progressDialog.show();
@@ -91,13 +107,13 @@ public class TestKnow_Activity extends AppCompatActivity {
                     public void onNext(QuizTestModel response) {
                         //Handle logic
                         try {
-                            // CategoryArrayList.clear();
+                            quizList.clear();
                             progressDialog.dismiss();
                             Log.e("result_my_test",""+ response.getResponce());
 
                             if (response.getResponce()==true){
-
-                                QuizTest_adapter  quizTest_adapter = new QuizTest_adapter(response.getData().getQuiz(), TestKnow_Activity.this);
+                                quizList=response.getData().getQuiz();
+                                 quizTest_adapter = new QuizTest_adapter(quizList, TestKnow_Activity.this);
                                 binding.setMyAdapter(quizTest_adapter);//set databinding adapter
 
                             }else {
