@@ -77,7 +77,7 @@ public class TestKnow_Activity extends AppCompatActivity {
                 ///if (quizTest_adapter!=null){
 
                     //quizTest_adapter.getRadioChecked();
-                    Log.e("ans_radio1",""+quizTest_adapter.getRadioChecked());
+                    //Log.e("ans_radio1",""+quizTest_adapter.getRadioChecked());
                // }
 
 
@@ -147,4 +147,6 @@ public class TestKnow_Activity extends AppCompatActivity {
     protected void attachBaseContext(Context newBase) {
         super.attachBaseContext(CalligraphyContextWrapper.wrap(newBase));
     }
+
+
 }

@@ -18,6 +18,8 @@ import com.info.hunar.model_pojo.quiz_test_model.QuizTestModelDataQuiz;
 import com.info.hunar.model_pojo.quiz_test_model.SelectedQuizData;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.LinkedHashSet;
 import java.util.List;
 
 /**
@@ -28,11 +30,11 @@ public class QuizTest_adapter extends RecyclerView.Adapter<QuizTest_adapter.View
     private List<QuizTestModelDataQuiz> dataModelList;
    QuizTestModelDataQuiz dataModel;
     Context context;
-    private RadioGroup lastCheckedRadioGroup = null;
     String id = "", option = "";
 
-    public List<SelectedQuizData> selectedQuizListData = new ArrayList<>();
+    public LinkedHashSet<SelectedQuizData> selectedQuizListData = new LinkedHashSet<>();
     public static ArrayList<String> selectedAnswers = new ArrayList<>();
+
 
     public QuizTest_adapter(List<QuizTestModelDataQuiz> dataModelList, Context ctx) {
         this.dataModelList = dataModelList;
@@ -57,6 +59,9 @@ public class QuizTest_adapter extends RecyclerView.Adapter<QuizTest_adapter.View
         holder.itemRowBinding.setModel(dataModel);
         // holder.itemRowBinding.setItemClickListener(this);
 
+        holder.setIsRecyclable(false);
+
+
         holder.itemRowBinding.radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup radioGroup, int i) {
@@ -67,11 +72,11 @@ public class QuizTest_adapter extends RecyclerView.Adapter<QuizTest_adapter.View
                     if (btn.getId() == i) {
                         //selectedAnswers.set(i, btn.getText().toString());
                         System.out.println(btn.getText().toString());
+                        //selectedQuizListData.add(new SelectedQuizData(dataModel.getId(),""));
 
-                        selectedQuizListData.add(new SelectedQuizData(dataModel.getId(),btn.getText().toString()));
-
-                        Log.e("sele_quiz_data", "" + selectedQuizListData);
+                        //Log.e("sele_quiz_data", "" + selectedQuizListData);
                         //Log.e("sele_quiz_data1", "" + selectedAnswers);
+
                     }
                     }
             }
@@ -102,7 +107,7 @@ public class QuizTest_adapter extends RecyclerView.Adapter<QuizTest_adapter.View
         }
     }
 
-    public String getRadioChecked(){
+    //public String getRadioChecked(){
 //        int childCount = holder.itemRowBinding.radioGroup.getChildCount();
 //        for (int x = 0; x < childCount; x++) {
 //            RadioButton btn = (RadioButton) holder.itemRowBinding.radioGroup.getChildAt(x);
@@ -116,31 +121,31 @@ public class QuizTest_adapter extends RecyclerView.Adapter<QuizTest_adapter.View
 
 
         //*******************************
-        for (int i=0; i<dataModelList.size(); i++){
-
-            if (dataModelList.get(i).getSelectedId() == R.id.radio_one) {
-                id = dataModelList.get(i).getId();
-                option = dataModelList.get(i).getOptionOne();
-
-            } else if (dataModelList.get(i).getSelectedId() == R.id.radio_two) {
-                id = dataModelList.get(i).getId();
-                option = dataModelList.get(i).getOptionTwo();
-
-
-            } else if (dataModelList.get(i).getSelectedId() == R.id.radio_three) {
-                id = dataModelList.get(i).getId();
-                option = dataModelList.get(i).getOptionThree();
-
-
-            } else if (dataModelList.get(i).getSelectedId() == R.id.radio_four) {
-                id = dataModelList.get(i).getId();
-                option = dataModelList.get(i).getOptionFour();
-            }
-
-            Log.e("ans_radio",""+id+"\n"+option);
-
-        }
-        return option;
-    }
+//        for (int i=0; i<dataModelList.size(); i++){
+//
+//            if (dataModelList.get(i).getSelectedId() == R.id.radio_one) {
+//                id = dataModelList.get(i).getId();
+//                option = dataModelList.get(i).getOptionOne();
+//
+//            } else if (dataModelList.get(i).getSelectedId() == R.id.radio_two) {
+//                id = dataModelList.get(i).getId();
+//                option = dataModelList.get(i).getOptionTwo();
+//
+//
+//            } else if (dataModelList.get(i).getSelectedId() == R.id.radio_three) {
+//                id = dataModelList.get(i).getId();
+//                option = dataModelList.get(i).getOptionThree();
+//
+//
+//            } else if (dataModelList.get(i).getSelectedId() == R.id.radio_four) {
+//                id = dataModelList.get(i).getId();
+//                option = dataModelList.get(i).getOptionFour();
+//            }
+//
+//            Log.e("ans_radio",""+id+"\n"+option);
+//
+//        }
+//        return option;
+    //}
 
 }
