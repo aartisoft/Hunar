@@ -24,6 +24,7 @@ public interface Base_Url {
     String get_pdf="get_pdf";
     String update_profile="update_profile";
     String quiz_user_result="quiz_user_result";
+    String get_result_and_question="get_result_and_question";
 
 
 

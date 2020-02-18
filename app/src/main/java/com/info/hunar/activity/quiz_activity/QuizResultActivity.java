@@ -1,4 +1,4 @@
-package com.info.hunar.activity;
+package com.info.hunar.activity.quiz_activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
@@ -12,13 +12,12 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
-import com.info.hunar.QuizAnswerActivity;
 import com.info.hunar.R;
+import com.info.hunar.activity.SubCourseDetailsActivity;
 import com.info.hunar.api_url.Api_Call;
 import com.info.hunar.api_url.Base_Url;
 import com.info.hunar.api_url.RxApiClicent;
 import com.info.hunar.databinding.ActivityTestResultBinding;
-import com.info.hunar.model_pojo.ForgotModel;
 import com.info.hunar.model_pojo.result_model.ResultModel;
 import com.info.hunar.model_pojo.result_model.ResultPdfModel;
 import com.info.hunar.session.SessionManager;
@@ -32,7 +31,7 @@ public class QuizResultActivity extends AppCompatActivity {
     ActivityTestResultBinding binding;
     String SubCategory_id;
     SessionManager session;
-    String userId;
+    String userId,SubCategory_name;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,7 +44,7 @@ public class QuizResultActivity extends AppCompatActivity {
 
         if (getIntent() != null) {
             SubCategory_id = getIntent().getStringExtra("SubCategory_id");
-            //SubCategory_name = getIntent().getStringExtra("SubCategory_name");
+            SubCategory_name = getIntent().getStringExtra("Course_name");
             binding.toolbarId.txToolbar.setText(getIntent().getStringExtra("Course_name"));
         }
 
@@ -68,6 +67,8 @@ public class QuizResultActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent=new Intent(QuizResultActivity.this, QuizAnswerActivity.class);
+                intent.putExtra("Course_name",SubCategory_name);
+                intent.putExtra("SubCategory_id",SubCategory_id);
                 startActivity(intent);
             }
         });
@@ -109,10 +110,10 @@ public class QuizResultActivity extends AppCompatActivity {
                             if (response.getResponce() == true) {
 
                                 binding.tvTotalScore.setText("Total score- "+response.getTotalScore());
-                                binding.tvTotalScore.setText("Attempt- "+response.getAttempt());
-                                binding.tvTotalScore.setText("Not attempt- "+response.getNotAttempt());
-                                binding.tvTotalScore.setText("Wrong- "+response.getWrong());
-                                binding.tvTotalScore.setText("Right- "+response.getRight());
+                                binding.tvAttempt.setText("Attempt- "+response.getAttempt());
+                                binding.tvUpattempt.setText("Not attempt- "+response.getNotAttempt());
+                                binding.tvWrong.setText("Wrong- "+response.getWrong());
+                                binding.tvRight.setText("Right- "+response.getRight());
 
 
                             } else {
@@ -202,6 +203,8 @@ public class QuizResultActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        super.onBackPressed();
+        //super.onBackPressed();
+        Intent intent=new Intent(QuizResultActivity.this, SubCourseDetailsActivity.class);
+        startActivity(intent);
     }
 }

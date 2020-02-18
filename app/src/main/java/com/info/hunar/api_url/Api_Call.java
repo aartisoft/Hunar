@@ -6,6 +6,7 @@ import com.info.hunar.model_pojo.Welcome_Video_Model;
 import com.info.hunar.model_pojo.category_model.CategoryModel;
 import com.info.hunar.model_pojo.quiz_test_model.QuizTestModel;
 import com.info.hunar.model_pojo.registration_model.RegistrationModel;
+import com.info.hunar.model_pojo.result_answer_model.ResultAnswerModel;
 import com.info.hunar.model_pojo.result_model.ResultModel;
 import com.info.hunar.model_pojo.result_model.ResultPdfModel;
 import com.info.hunar.model_pojo.subcategory_course_model.Sub_course_details_model;
@@ -21,6 +22,7 @@ import static com.info.hunar.api_url.Base_Url.forget_password;
 import static com.info.hunar.api_url.Base_Url.get_category;
 import static com.info.hunar.api_url.Base_Url.get_pdf;
 import static com.info.hunar.api_url.Base_Url.get_quiz_question;
+import static com.info.hunar.api_url.Base_Url.get_result_and_question;
 import static com.info.hunar.api_url.Base_Url.get_subcategory;
 import static com.info.hunar.api_url.Base_Url.getwelcomevideo;
 import static com.info.hunar.api_url.Base_Url.quiz_user_result;
@@ -103,6 +105,12 @@ public interface Api_Call {
     @POST(quiz_user_result)
     @FormUrlEncoded
     Observable<ResultModel> GetResultScore(
+            @Field("subcategory_id")  String subCategory_id,
+            @Field("user_id") String userId);
+
+    @POST(get_result_and_question)
+    @FormUrlEncoded
+    Observable<ResultAnswerModel> GetResultAnswer(
             @Field("subcategory_id")  String subCategory_id,
             @Field("user_id") String userId);
 

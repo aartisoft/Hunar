@@ -36,6 +36,7 @@ import com.google.android.exoplayer2.upstream.DefaultBandwidthMeter;
 import com.google.android.exoplayer2.upstream.DefaultDataSourceFactory;
 import com.google.android.exoplayer2.util.Util;
 import com.info.hunar.R;
+import com.info.hunar.activity.quiz_activity.TestKnow_Activity;
 import com.info.hunar.utils.Conectivity;
 
 import uk.co.chrisjenx.calligraphy.CalligraphyConfig;

@@ -1,4 +1,4 @@
-package com.info.hunar.activity;
+package com.info.hunar.activity.quiz_activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;

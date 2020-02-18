@@ -4,10 +4,8 @@ import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
-import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Bundle;
-import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
@@ -19,7 +17,6 @@ import android.widget.LinearLayout;
 import android.widget.MediaController;
 import android.widget.TextView;
 import android.widget.Toast;
-import android.widget.VideoView;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -48,8 +45,6 @@ import com.google.android.exoplayer2.upstream.DataSource;
 import com.google.android.exoplayer2.upstream.DefaultBandwidthMeter;
 import com.google.android.exoplayer2.upstream.DefaultDataSourceFactory;
 import com.google.android.exoplayer2.util.Util;
-import com.info.hunar.activity.Activity_VideoPlay;
-import com.info.hunar.activity.TestKnow_Activity;
 import com.info.hunar.api_url.Api_Call;
 import com.info.hunar.api_url.Base_Url;
 import com.info.hunar.api_url.RxApiClicent;
@@ -64,8 +59,6 @@ import io.reactivex.observers.DisposableObserver;
 import io.reactivex.schedulers.Schedulers;
 import uk.co.chrisjenx.calligraphy.CalligraphyConfig;
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
-
-import static com.info.hunar.api_url.Base_Url.CategoryImage_URL;
 
 public class WelcomeActivity extends AppCompatActivity implements ViewPager.OnPageChangeListener {
     ViewPager mViewPager;

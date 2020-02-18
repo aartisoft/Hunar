@@ -15,7 +15,7 @@
         android:layout_height="match_parent"
         android:background="@drawable/bg_gradient"
         android:orientation="vertical"
-        tools:context=".activity.TestKnow_Activity">
+        tools:context=".activity.quiz_activity.TestKnow_Activity">
 
 
         <include
