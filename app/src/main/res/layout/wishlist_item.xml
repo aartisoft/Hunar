@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <import type="android.view.View"/>
+        <variable
+            name="model"
+            type="com.info.hunar.model_pojo.wishlist_model.WishlistModelData" />
+
+<!--        <variable-->
+<!--            name="itemClickListener"-->
+<!--            type="com.info.hunar.binding_interface.HomeCategoryClickListener" />-->
+    </data>
+<LinearLayout
+    android:padding="@dimen/_5sdp"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:weightSum="1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            >
+
+            <TextView
+                android:layout_weight="0.2"
+                android:id="@+id/tv_video_nextplay"
+                android:layout_margin="@dimen/_5sdp"
+                android:textAlignment="textStart"
+                android:padding="5dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@{model.videoName}"
+                android:textColor="@color/colorPrimary"
+                android:textSize="7pt"
+                android:textStyle="bold"
+                android:layout_gravity="center_horizontal|center_vertical"
+                tools:ignore="RtlCompat" />
+
+            <LinearLayout
+              android:layout_gravity="center"
+                android:gravity="center"
+                android:layout_weight="0.8"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                >
+                <ImageView
+                    android:layout_gravity="center"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:src="@drawable/heart_icon"
+                    >
+                </ImageView>
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/tv_video"
+            android:textAlignment="textStart"
+            android:padding="5dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@{model.timeDuration}"
+            android:textColor="@color/colorPrimary"
+            android:textSize="5pt"
+            android:layout_gravity="center_horizontal|center_vertical"
+            tools:ignore="RtlCompat" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_1sdp"
+        android:background="@color/colorPrimary"
+        >
+
+    </View>
+
+</LinearLayout>
+
+</layout>

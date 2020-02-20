@@ -1,17 +1,36 @@
 package com.info.hunar.fragment;
 
+import android.annotation.SuppressLint;
+import android.app.ProgressDialog;
 import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.info.hunar.R;
+import com.info.hunar.adapter.CategoryAdapter;
+import com.info.hunar.adapter.WishlistAdapter;
+import com.info.hunar.api_url.Api_Call;
+import com.info.hunar.api_url.Base_Url;
+import com.info.hunar.api_url.RxApiClicent;
+import com.info.hunar.databinding.FragmentWishesCourseFragmentBinding;
+import com.info.hunar.model_pojo.category_model.CategoryModel;
+import com.info.hunar.model_pojo.wishlist_model.WishlistModel;
+import com.info.hunar.session.SessionManager;
+import com.info.hunar.utils.Conectivity;
+
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.observers.DisposableObserver;
+import io.reactivex.schedulers.Schedulers;
 
 import static com.info.hunar.activity.Home_Activity.bottombar;
 import static com.info.hunar.activity.Home_Activity.card_search;
@@ -29,6 +48,10 @@ public class Wishes_Course_fragment extends Fragment {
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
+    WishlistAdapter categoryAdapter;
+    FragmentWishesCourseFragmentBinding binding;
+    SessionManager session;
+    String userId;
 
     // TODO: Rename and change types of parameters
     private String mParam1;
@@ -77,14 +100,82 @@ public class Wishes_Course_fragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View root= inflater.inflate(R.layout.fragment_wishes__course_fragment, container, false);
+        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_wishes__course_fragment, container, false);
+        View root = binding.getRoot();//using data binding
+        //View root= inflater.inflate(R.layout.fragment_wishes__course_fragment, container, false);
+        session = new SessionManager(getActivity());
+        userId = session.getUser().getUserId();
 
         card_search.setVisibility(View.GONE);
         bottombar.getChildAt(2).setSelected(true);
-        bottombar.selectTab(2,true);
+        bottombar.selectTab(2, true);
 
+
+        if (Conectivity.isConnected(getActivity())) {
+            GetWishlist();//using Rx jva with retrofit
+
+        } else {
+            Toast.makeText(getActivity(), "Please check Internet", Toast.LENGTH_SHORT).show();
+        }
 
         return root;
+    }
+
+    @SuppressLint("CheckResult")
+    private void GetWishlist() {
+
+        final ProgressDialog progressDialog = new ProgressDialog(getActivity(), R.style.MyGravity);
+        progressDialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
+        progressDialog.show();
+
+        Api_Call apiInterface = RxApiClicent.getClient(Base_Url.BaseUrl).create(Api_Call.class);
+
+        apiInterface.GetWishlist(userId)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeWith(new DisposableObserver<WishlistModel>() {
+                    @Override
+                    public void onNext(WishlistModel response) {
+                        //Handle logic
+                        try {
+                            // CategoryArrayList.clear();
+                            progressDialog.dismiss();
+                            Log.e("result_mr_product", "" + response.getResponce());
+                            // Toast.makeText(DirectoryBusinessActivity.this, ""+response.getMsg(), Toast.LENGTH_SHORT).show();
+
+                            if (response.getResponce() == true) {
+                                // CategoryArrayList=response.getData();
+                                //  Toast.makeText(DirectoryBusinessActivity.this, ""+response.getMsg(), Toast.LENGTH_SHORT).show();
+                                categoryAdapter = new WishlistAdapter(response.getData(), getActivity());
+                                binding.setMyAdapter(categoryAdapter);//set databinding adapter
+                                // categoryAdapter.notifyDataSetChanged();
+
+                            } else {
+
+                                Toast.makeText(getActivity(), "No record found", Toast.LENGTH_SHORT).show();
+                            }
+
+                            categoryAdapter.notifyDataSetChanged();
+
+                        } catch (Exception e) {
+                            progressDialog.dismiss();
+                        }
+
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        //Handle error
+                        progressDialog.dismiss();
+                        Log.e("mr_product_error", e.toString());
+                        // Toast.makeText(MainActivity.this, "Error", Toast.LENGTH_SHORT).show();
+                    }
+
+                    @Override
+                    public void onComplete() {
+                        progressDialog.dismiss();
+                    }
+                });
     }
 
     // TODO: Rename method, update argument and hook method into UI event
@@ -94,33 +185,7 @@ public class Wishes_Course_fragment extends Fragment {
         }
     }
 
-//    @Override
-//    public void onAttach(Context context) {
-//        super.onAttach(context);
-//        if (context instanceof OnFragmentInteractionListener) {
-//            mListener = (OnFragmentInteractionListener) context;
-//        } else {
-//            throw new RuntimeException(context.toString()
-//                    + " must implement OnFragmentInteractionListener");
-//        }
-//    }
-//
-//    @Override
-//    public void onDetach() {
-//        super.onDetach();
-//        mListener = null;
-//    }
 
-    /**
-     * This interface must be implemented by activities that contain this
-     * fragment to allow an interaction in this fragment to be communicated
-     * to the activity and potentially other fragments contained in that
-     * activity.
-     * <p>
-     * See the Android Training lesson <a href=
-     * "http://developer.android.com/training/basics/fragments/communicating.html"
-     * >Communicating with Other Fragments</a> for more information.
-     */
     public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);

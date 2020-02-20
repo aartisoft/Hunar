@@ -57,7 +57,7 @@ public class QuizTest_adapter extends RecyclerView.Adapter<QuizTest_adapter.View
         holder.itemRowBinding.setModel(dataModel);
         // holder.itemRowBinding.setItemClickListener(this);
 
-        holder.setIsRecyclable(false);
+       // holder.setIsRecyclable(false);
 
 
         holder.itemRowBinding.radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
@@ -70,7 +70,7 @@ public class QuizTest_adapter extends RecyclerView.Adapter<QuizTest_adapter.View
                   if (btn.getId() == i) {
                         //selectedAnswers.set(i, btn.getText().toString());
                         System.out.println(btn.getText().toString());
-                      Log.e("ans_radio11", "" +i);
+                     // Log.e("ans_radio11", "" +i);
                       //  if (dataModelList.get(position).getSelectedId() == R.id.radio_one) {
                             id = dataModelList.get(position).getId();
                             option = dataModelList.get(position).getOptionOne();
@@ -90,10 +90,7 @@ public class QuizTest_adapter extends RecyclerView.Adapter<QuizTest_adapter.View
 //                            option = dataModelList.get(position).getOptionFour();
 //                        }
 
-                        Log.e("ans_radio", "" + id + "\n" + option);
-
-
-
+                        Log.e("ans_radio", "id:" + id + "\n opt:" + option);
                         selectedItemArray(position);
 
                     }
@@ -110,21 +107,32 @@ public class QuizTest_adapter extends RecyclerView.Adapter<QuizTest_adapter.View
 
             for (int j=0; j<selectedQuizListData.size();j++ ){
 
-                if (dataModelList.get(position).getId().equalsIgnoreCase(
-                        selectedQuizListData.get(j).getId())){
+                if (selectedQuizListData.get(j).getId().equalsIgnoreCase(id)){
 
                     selectedQuizListData.remove(j);
 
-                    selectedQuizListData.add(new SelectedQuizData(id,option));
+                    Log.e("sele_quiz_data11", ""+id+" " +
+                            "size " + selectedQuizListData.size());
 
-                }else {
                     selectedQuizListData.add(new SelectedQuizData(id,option));
+                    Log.e("sele_quiz_data14", "" + selectedQuizListData.size());
+
+                    break;
+                }else {
+                    if (j == selectedQuizListData.size() - 1){
+                        selectedQuizListData.add(new SelectedQuizData(id,option));
+                   }
+
+                    Log.e("sele_quiz_data12", "" + selectedQuizListData.size());
+
+
                 }
 
             }
 
         }else {
             selectedQuizListData.add(new SelectedQuizData(id,option));
+            Log.e("sele_quiz_data13", "" + selectedQuizListData.size());
         }
 
 

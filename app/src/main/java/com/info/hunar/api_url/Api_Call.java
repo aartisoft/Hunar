@@ -10,6 +10,7 @@ import com.info.hunar.model_pojo.result_answer_model.ResultAnswerModel;
 import com.info.hunar.model_pojo.result_model.ResultModel;
 import com.info.hunar.model_pojo.result_model.ResultPdfModel;
 import com.info.hunar.model_pojo.subcategory_course_model.Sub_course_details_model;
+import com.info.hunar.model_pojo.wishlist_model.WishlistModel;
 
 import io.reactivex.Completable;
 import io.reactivex.Observable;
@@ -24,6 +25,7 @@ import static com.info.hunar.api_url.Base_Url.get_pdf;
 import static com.info.hunar.api_url.Base_Url.get_quiz_question;
 import static com.info.hunar.api_url.Base_Url.get_result_and_question;
 import static com.info.hunar.api_url.Base_Url.get_subcategory;
+import static com.info.hunar.api_url.Base_Url.get_wishlist;
 import static com.info.hunar.api_url.Base_Url.getwelcomevideo;
 import static com.info.hunar.api_url.Base_Url.quiz_user_result;
 import static com.info.hunar.api_url.Base_Url.registration;
@@ -113,6 +115,12 @@ public interface Api_Call {
     Observable<ResultAnswerModel> GetResultAnswer(
             @Field("subcategory_id")  String subCategory_id,
             @Field("user_id") String userId);
+
+    @POST(get_wishlist)
+    @FormUrlEncoded
+    Observable<WishlistModel> GetWishlist(
+            @Field("user_id") String userId);
+
 
 
 //    @FormUrlEncoded

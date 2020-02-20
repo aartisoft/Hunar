@@ -1,5 +1,7 @@
 package com.info.hunar.fragment;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 
@@ -24,7 +26,7 @@ import static com.info.hunar.activity.Home_Activity.card_search;
 public class Profile_Fragment extends Fragment {
     FragmentProfileBinding binding;
     SessionManager session;
-    private String userId;
+    String userId;
 
 
     public Profile_Fragment() {
@@ -70,6 +72,14 @@ public class Profile_Fragment extends Fragment {
             }
         });
 
+        binding.tvLouout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+               LogoutApp();
+
+            }
+        });
 
 
         binding.tvWishlist.setOnClickListener(new View.OnClickListener() {
@@ -104,6 +114,32 @@ public class Profile_Fragment extends Fragment {
 
 
     return view;
+    }
+
+    private void LogoutApp() {
+        AlertDialog.Builder dialog = new AlertDialog.Builder(getActivity()).setTitle("Hunar")
+                .setMessage("Are you sure, you want to logout the app");
+
+        dialog.setNegativeButton("no", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+            }
+        });
+
+        dialog.setPositiveButton("yes", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int whichButton) {
+
+                session.logout();
+                dialog.dismiss();
+
+            }
+
+
+        });
+        final AlertDialog alert = dialog.create();
+        alert.show();
     }
 
 
