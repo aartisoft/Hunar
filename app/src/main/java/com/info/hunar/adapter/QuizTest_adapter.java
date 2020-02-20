@@ -17,6 +17,10 @@ import com.info.hunar.databinding.QuizItemBinding;
 import com.info.hunar.model_pojo.quiz_test_model.QuizTestModelDataQuiz;
 import com.info.hunar.model_pojo.quiz_test_model.SelectedQuizData;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.LinkedHashSet;
@@ -28,9 +32,10 @@ import java.util.List;
 public class QuizTest_adapter extends RecyclerView.Adapter<QuizTest_adapter.ViewHolder> {
 
     private List<QuizTestModelDataQuiz> dataModelList;
-   QuizTestModelDataQuiz dataModel;
+    QuizTestModelDataQuiz dataModel;
     Context context;
     String id = "", option = "";
+    public JSONArray passArray=null;
 
     public ArrayList<SelectedQuizData> selectedQuizListData = new ArrayList<>();
 
@@ -56,88 +61,101 @@ public class QuizTest_adapter extends RecyclerView.Adapter<QuizTest_adapter.View
         holder.bind(dataModel);
         holder.itemRowBinding.setModel(dataModel);
         // holder.itemRowBinding.setItemClickListener(this);
+        holder.itemRowBinding.radioGroup.setTag(position);
 
-       // holder.setIsRecyclable(false);
-
+        holder.setIsRecyclable(false);
 
         holder.itemRowBinding.radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup radioGroup, int i) {
+                int clickedPos = (Integer) radioGroup.getTag();
+                int radioButtonID = radioGroup.getCheckedRadioButtonId();
+                dataModelList.get(clickedPos).setSelectedId(radioButtonID);
+
                 int childCount = holder.itemRowBinding.radioGroup.getChildCount();
-               for (int x = 0; x < childCount; x++) {
-                 RadioButton btn = (RadioButton) holder.itemRowBinding.radioGroup.getChildAt(x);
+                for (int x = 0; x < childCount; x++) {
+                    RadioButton btn = (RadioButton) holder.itemRowBinding.radioGroup.getChildAt(x);
 
-                  if (btn.getId() == i) {
-                        //selectedAnswers.set(i, btn.getText().toString());
+                    if (btn.getId() == i) {
                         System.out.println(btn.getText().toString());
-                     // Log.e("ans_radio11", "" +i);
-                      //  if (dataModelList.get(position).getSelectedId() == R.id.radio_one) {
-                            id = dataModelList.get(position).getId();
-                            option = dataModelList.get(position).getOptionOne();
-
-//                        } else if (dataModelList.get(position).getSelectedId() == R.id.radio_two) {
-//                            id = dataModelList.get(position).getId();
-//                            option = dataModelList.get(position).getOptionTwo();
-//
-//
-//                        } else if (dataModelList.get(position).getSelectedId() == R.id.radio_three) {
-//                            id = dataModelList.get(position).getId();
-//                            option = dataModelList.get(position).getOptionThree();
-//
-//
-//                        } else if (dataModelList.get(position).getSelectedId() == R.id.radio_four) {
-//                            id = dataModelList.get(position).getId();
-//                            option = dataModelList.get(position).getOptionFour();
-//                        }
-
-                        Log.e("ans_radio", "id:" + id + "\n opt:" + option);
-                        selectedItemArray(position);
+                        option = btn.getText().toString();
 
                     }
-                 }
-           }
+                }
+
+                id = dataModelList.get(position).getId();
+
+                Log.e("ans_radio", "id:" + id + "\n opt:" + option);
+                selectedItemArray(position);
+            }
         });
-   
 
 
     }
 
     private void selectedItemArray(int position) {
-        if (selectedQuizListData!=null && !selectedQuizListData.isEmpty() ){
+        if (selectedQuizListData != null && !selectedQuizListData.isEmpty()) {
 
-            for (int j=0; j<selectedQuizListData.size();j++ ){
+            for (int j = 0; j < selectedQuizListData.size(); j++) {
 
-                if (selectedQuizListData.get(j).getId().equalsIgnoreCase(id)){
+                if (selectedQuizListData.get(j).getId().equalsIgnoreCase(id)) {
 
                     selectedQuizListData.remove(j);
 
-                    Log.e("sele_quiz_data11", ""+id+" " +
+                    Log.e("sele_quiz_data11", "" + id + " " +
                             "size " + selectedQuizListData.size());
 
-                    selectedQuizListData.add(new SelectedQuizData(id,option));
-                    Log.e("sele_quiz_data14", "" + selectedQuizListData.size());
+                    selectedQuizListData.add(new SelectedQuizData(id, option));
+                   // Log.e("sele_quiz_data14", "" + selectedQuizListData.size());
+                    getSelected_itemArray();
 
                     break;
-                }else {
-                    if (j == selectedQuizListData.size() - 1){
-                        selectedQuizListData.add(new SelectedQuizData(id,option));
-                   }
-
-                    Log.e("sele_quiz_data12", "" + selectedQuizListData.size());
-
+                } else {
+                    if (j == selectedQuizListData.size() - 1) {
+                        selectedQuizListData.add(new SelectedQuizData(id, option));
+                        getSelected_itemArray();
+                      //  Log.e("sele_quiz_data12", "" + selectedQuizListData.size());
+                    }
 
                 }
 
             }
 
-        }else {
-            selectedQuizListData.add(new SelectedQuizData(id,option));
-            Log.e("sele_quiz_data13", "" + selectedQuizListData.size());
+        } else {
+            selectedQuizListData.add(new SelectedQuizData(id, option));
+           // Log.e("sele_quiz_data13", "" + selectedQuizListData.size());
+            getSelected_itemArray();
         }
 
+        //Log.e("sele_quiz_data", "" + selectedQuizListData);
+    }
 
+    private void getSelected_itemArray() {
+        passArray = new JSONArray();
 
-        Log.e("sele_quiz_data", "" + selectedQuizListData);
+        if (selectedQuizListData != null && !selectedQuizListData.isEmpty()) {
+
+            for (int i = 0; i < selectedQuizListData.size(); i++) {
+
+               // Log.e("selected_id", "" + selectedQuizListData.get(i).getId());
+               // Log.e("option", "" + selectedQuizListData.get(i).getOption());
+
+                JSONObject jObjP = new JSONObject();
+
+                try {
+                    jObjP.put("id", selectedQuizListData.get(i).getId());
+                    jObjP.put("option", selectedQuizListData.get(i).getOption());
+
+                    passArray.put(jObjP);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+                Log.e("array_jsaon", "" + passArray.toString());
+
+            }
+        } else {
+            Log.e("no_item_found", "no_item");
+        }
     }
 
 
@@ -146,6 +164,13 @@ public class QuizTest_adapter extends RecyclerView.Adapter<QuizTest_adapter.View
         return dataModelList.size();
     }
 
+    public String PassArray() {
+
+        if (passArray!=null){
+            return passArray.toString();
+        }
+        return null;
+    }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         public QuizItemBinding itemRowBinding;
@@ -160,34 +185,5 @@ public class QuizTest_adapter extends RecyclerView.Adapter<QuizTest_adapter.View
             itemRowBinding.executePendingBindings();
         }
     }
-
-
-        //*******************************
-//        for (int i=0; i<dataModelList.size(); i++){
-//
-//            if (dataModelList.get(i).getSelectedId() == R.id.radio_one) {
-//                id = dataModelList.get(i).getId();
-//                option = dataModelList.get(i).getOptionOne();
-//
-//            } else if (dataModelList.get(i).getSelectedId() == R.id.radio_two) {
-//                id = dataModelList.get(i).getId();
-//                option = dataModelList.get(i).getOptionTwo();
-//
-//
-//            } else if (dataModelList.get(i).getSelectedId() == R.id.radio_three) {
-//                id = dataModelList.get(i).getId();
-//                option = dataModelList.get(i).getOptionThree();
-//
-//
-//            } else if (dataModelList.get(i).getSelectedId() == R.id.radio_four) {
-//                id = dataModelList.get(i).getId();
-//                option = dataModelList.get(i).getOptionFour();
-//            }
-//
-//            Log.e("ans_radio",""+id+"\n"+option);
-//
-//        }
-//        return option;
-    //}
 
 }

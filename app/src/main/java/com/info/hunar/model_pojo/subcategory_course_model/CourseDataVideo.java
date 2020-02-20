@@ -50,6 +50,9 @@ public class CourseDataVideo {
     @SerializedName("course_name")
     @Expose
     private String course_name;
+    @SerializedName("wishlist_status")
+    @Expose
+    private String wishlist_status;
 
     public String getId() {
         return id;
@@ -61,6 +64,14 @@ public class CourseDataVideo {
 
     public String getCourse_name() {
         return course_name;
+    }
+
+    public String getWishlist_status() {
+        return wishlist_status;
+    }
+
+    public void setWishlist_status(String wishlist_status) {
+        this.wishlist_status = wishlist_status;
     }
 
     public void setCourse_name(String course_name) {

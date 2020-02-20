@@ -25,6 +25,17 @@ public class ResultModel {
     @SerializedName("right")
     @Expose
     private String right;
+    @SerializedName("error_msg")
+    @Expose
+    private String error_msg;
+
+    public String getError_msg() {
+        return error_msg;
+    }
+
+    public void setError_msg(String error_msg) {
+        this.error_msg = error_msg;
+    }
 
     public Boolean getResponce() {
         return responce;

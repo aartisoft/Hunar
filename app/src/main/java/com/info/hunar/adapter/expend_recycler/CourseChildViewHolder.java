@@ -48,6 +48,11 @@ public class CourseChildViewHolder extends ChildViewHolder {
         tv_video_name.setText(movies.getVideoName());
         tv_video_time.setText("Video- "+movies.getTimeDuration()+" mins ");
 
+        if (movies.getWishlist_status().equalsIgnoreCase("true")){
+            iv_wish.setImageResource(R.drawable.ic_favorite_red);
+        }else {
+            iv_wish.setImageResource(R.drawable.ic_favorite_border_black_24dp);
+        }
 
         tv_video_name.setOnClickListener(new View.OnClickListener() {
             @Override

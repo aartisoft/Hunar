@@ -27,6 +27,7 @@ import static com.info.hunar.api_url.Base_Url.get_result_and_question;
 import static com.info.hunar.api_url.Base_Url.get_subcategory;
 import static com.info.hunar.api_url.Base_Url.get_wishlist;
 import static com.info.hunar.api_url.Base_Url.getwelcomevideo;
+import static com.info.hunar.api_url.Base_Url.quiz_submit;
 import static com.info.hunar.api_url.Base_Url.quiz_user_result;
 import static com.info.hunar.api_url.Base_Url.registration;
 import static com.info.hunar.api_url.Base_Url.subcategory_detail;
@@ -50,7 +51,8 @@ public interface Api_Call {
     @POST(subcategory_detail)
     @FormUrlEncoded
     Observable<Sub_course_details_model> GetSubCategoryDetails(
-            @Field("subcategory_id") String subCategory_id);
+            @Field("subcategory_id") String subCategory_id,
+            @Field("user_id")String userId);
 
     @GET(getwelcomevideo)
     Observable<Welcome_Video_Model> Get_Welcome_Video();
@@ -121,6 +123,12 @@ public interface Api_Call {
     Observable<WishlistModel> GetWishlist(
             @Field("user_id") String userId);
 
+    @POST(quiz_submit)
+    @FormUrlEncoded
+    Observable<ResultModel>  SubmitQuizTest(
+            @Field("subcategory_id")  String subCategory_id,
+            @Field("data")  String pass_array,
+            @Field("user_id")  String userId);
 
 
 //    @FormUrlEncoded

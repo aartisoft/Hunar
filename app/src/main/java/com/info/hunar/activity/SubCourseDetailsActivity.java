@@ -99,10 +99,15 @@ public class SubCourseDetailsActivity extends AppCompatActivity {
         tv_take_know.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent in = new Intent(SubCourseDetailsActivity.this, TestKnow_Activity.class);
-                in.putExtra("SubCategory_name", SubCategory_name);
-                in.putExtra("SubCategory_id", SubCategory_id);
-                startActivity(in);
+
+                if (mAdapter!=null){
+                    Intent in = new Intent(SubCourseDetailsActivity.this, TestKnow_Activity.class);
+                    in.putExtra("SubCategory_name", SubCategory_name);
+                    in.putExtra("SubCategory_id", SubCategory_id);
+                    startActivity(in);
+                }else {
+                    Toast.makeText(SubCourseDetailsActivity.this, "Data not available", Toast.LENGTH_SHORT).show();
+                }
             }
         });
 
@@ -117,7 +122,7 @@ public class SubCourseDetailsActivity extends AppCompatActivity {
 
         Api_Call apiInterface = RxApiClicent.getClient(Base_Url.BaseUrl).create(Api_Call.class);
 
-        apiInterface.GetSubCategoryDetails(SubCategory_id)
+        apiInterface.GetSubCategoryDetails(SubCategory_id,userId)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeWith(new DisposableObserver<Sub_course_details_model>() {
